@@ -40,7 +40,7 @@ const Cards = ({ data, basePath }: ICard) => {
             <time>{singleCard.date.toString()}</time>
             <h2>{singleCard.title}</h2>
 
-            {singleCard.description && <p>{singleCard.description}</p>}
+            {!!singleCard.description && <p>{singleCard.description}</p>}
           </Link>
         </article>
       ))}
