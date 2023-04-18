@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import { Calendar } from 'react-feather';
 import { StyledNote, StyledNoteLink } from '../styles/notes.styles';
