@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
-export const StyledNoteLink = styled.a`
+export const StyledNoteLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
 `;
