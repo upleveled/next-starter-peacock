@@ -8,14 +8,14 @@ const ExperimentsSection = () => (
   <StyledExperimentsSection>
     <Container>
       <h2>Experiments</h2>
-      <div className="section-intro max-width">
+      <p className="section-intro max-width">
         I try to stage little experiments to help me learn things I find
         interesting. I almost never finish them
         <span aria-label="monkey-don't-wanna-see" role="img">
           🙈
         </span>
         . But I learn a lot anyways
-      </div>
+      </p>
 
       <section className="experiments">
         {experiments.map((experiment) => (
