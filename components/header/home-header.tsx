@@ -7,7 +7,7 @@ const HomeHeader = () => (
   <StyledHomeHeading>
     <Container>
       <div className="header-container">
-        <h1 data-cy="homePageTitle">{siteConfig.author.title}</h1>
+        <h1 data-test-id="homePageTitle">{siteConfig.author.title}</h1>
         <p
           className="description"
           dangerouslySetInnerHTML={{ __html: siteConfig.author.description }}
