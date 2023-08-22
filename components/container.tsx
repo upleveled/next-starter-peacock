@@ -8,7 +8,7 @@ export interface IContainer extends HTMLAttributes<HTMLElement> {
 
 const Container: FC<IContainer> = ({
   children,
-  width = 'default',
+  width = "default",
   ...props
 }) => {
   return (
