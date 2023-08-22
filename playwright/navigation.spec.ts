@@ -12,20 +12,24 @@ test('Navigate and check content', async ({ page }) => {
 
   await page.getByTestId('workPageLink').click();
   await page.waitForURL('/works');
+  await expect(page).toHaveTitle('Works & Projects | NextJS Starter Peacock');
   await expect(page.getByTestId('pageTitle')).toHaveText('Works & Projects');
 
   await page.getByTestId('articlesPageLink').click();
   await page.waitForURL('/articles');
+  await expect(page).toHaveTitle('Articles | NextJS Starter Peacock');
   await expect(page.getByTestId('pageTitle')).toHaveText('Articles');
 
   await page.getByTestId('notesPageLink').click();
   await page.waitForURL('/notes');
+  await expect(page).toHaveTitle('Notes | NextJS Starter Peacock');
   await expect(page.getByTestId('pageTitle')).toHaveText('Notes');
 
   await page.getByTestId('aboutPageLink').click();
   await page.waitForURL('/about');
+  await expect(page).toHaveTitle('About | NextJS Starter Peacock');
   await expect(page.getByTestId('pageTitle')).toHaveText('About Me🧘🏾‍♂️');
-  const rssLink = await page.locator('[data-test-id="rssPageLink"] a');
-  await expect(rssLink).toBeVisible();
-  await expect(rssLink.getAttribute('href')).toContain('/rss.xml');
+  await expect(
+    await page.locator('[data-test-id="rssPageLink"] a').getAttribute('href'),
+  ).toContain('/rss.xml');
 });
