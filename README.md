@@ -8,7 +8,7 @@ Peacock is a NextJS portfolio Starter for software engineers and designers. Show
 
 - Styled with Tailwind CSS
 - Written in TypeScript & Next 14 (RSC)
-- Blog, Notes and Work content types 
+- Blog, Notes and Work content types
 
 ## Getting Started
 
@@ -42,21 +42,13 @@ npm config set msvs_version 2017
 4. Jump into the directory and Install dependencies
 
 ```bash
-cd next-starter-peacock && yarn
-
-or
-
-cd next-starter-peacock && npm install
+cd next-starter-peacock && pnpm install
 ```
 
 5. Start the dev server
 
 ```bash
-yarn dev
-
-or
-
-npm run dev
+pnpm dev
 ```
 
 6. Find `config/index.json`, change `name` and `title` to your name and title. Save and open [http://localhost:3000](http://localhost:3000) with your browser 💥💥💥. See the results 😊.
