@@ -18,7 +18,6 @@ export function generateMetadata({
     contentType: IContentType;
   };
 }): Metadata {
-  console.log(params);
   const contentType = contentTypesMap.get(params.contentType);
   return {
     title: `${contentType.title} | ${site.siteTitle}`,
