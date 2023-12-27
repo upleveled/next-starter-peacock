@@ -11,7 +11,14 @@ import { contentTypesMap } from '../../utils/content-types';
 import { generateRSS } from '../../utils/rss';
 
 /** generate list page metadata */
-export function generateMetadata({ params }): Metadata {
+export function generateMetadata({
+  params,
+}: {
+  params: {
+    contentType: IContentType;
+  };
+}): Metadata {
+  console.log(params);
   const contentType = contentTypesMap.get(params.contentType);
   return {
     title: `${contentType.title} | ${site.siteTitle}`,
@@ -31,8 +38,14 @@ export function generateStaticParams() {
 /**
  * Index page `/index`
  */
-export default function ContentListPage({ params }) {
-  const contentType = params.contentType as IContentType;
+export default function ContentListPage({
+  params,
+}: {
+  params: {
+    contentType: IContentType;
+  };
+}) {
+  const contentType = params.contentType;
 
   // redirect to 404 with wrong contentType
   if (!contentTypesMap.has(contentType)) {
