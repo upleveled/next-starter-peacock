@@ -34,7 +34,7 @@ export function Testimonials({
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide
-            key={`testimonials-${testimonial}`}
+            key={`testimonials-${testimonial.name}`}
             className="bg-accent-8 min-w-[400px] py-4 px-5 rounded-md select-none"
           >
             <header className="mb-6">

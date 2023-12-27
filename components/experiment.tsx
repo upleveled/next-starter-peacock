@@ -3,7 +3,6 @@ import { Codepen, ExternalLink, GitHub } from 'react-feather';
 import Tilt from 'react-parallax-tilt';
 
 export function ExperimentItem({ experiment }: any) {
-  console.log(experiment);
   let icon;
   const classes = 'text-bright';
 
