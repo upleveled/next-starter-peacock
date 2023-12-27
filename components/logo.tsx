@@ -1,8 +1,5 @@
-import React from "react";
-import { StyledLogo } from "./styles/logo.styles";
+import React from 'react';
 
-const Logo = () => {
-  return <StyledLogo src="/images/logo.svg" alt="logo" />;
-};
-
-export default Logo;
+export function Logo() {
+  return <img src="/images/logo.svg" alt="logo" className="h-4 w-4 mr-1" />;
+}
