@@ -1,6 +1,6 @@
 import '../components/globals.css';
 import { Manrope, Young_Serif } from 'next/font/google';
-import LayoutComponent from '../components/layoutComponent';
+import LayoutComponent from '../components/LayoutComponent';
 
 const manrope = Manrope({
   display: 'swap',

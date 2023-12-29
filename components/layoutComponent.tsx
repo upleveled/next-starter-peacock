@@ -3,9 +3,9 @@
 import '../components/globals.css';
 import { ThemeProvider } from 'next-themes';
 import { useState } from 'react';
-import { Footer, MobileNav, Nav } from '../components';
-import { MenuProvider } from '../components/MenuContext';
 import { cn } from '../utils/cn';
+import { Footer, MobileNav, Nav } from './';
+import { MenuProvider } from './MenuContext';
 
 export default function LayoutComponent({
   children,
