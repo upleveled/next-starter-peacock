@@ -15,7 +15,10 @@ export default function About() {
     <Container width="narrow">
       {/* Content goes here */}
       <header className="pt-12 pb-4">
-        <h1 className="text-3xl font-bold mb-6 md:text-4xl font-display">
+        <h1
+          data-test-id="pageTitle"
+          className="text-3xl font-bold mb-6 md:text-4xl font-display"
+        >
           About Me 🧘🏾‍♂️
         </h1>
       </header>
