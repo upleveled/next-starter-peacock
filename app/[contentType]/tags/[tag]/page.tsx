@@ -30,7 +30,7 @@ export default function ContentListPage({
         <h1 className="text-4xl font-bold font-display">{title} Tags</h1>
         <p className="text-accent-4 text-lg">{description}</p>
       </section>
-      <ContentList items={content} contentType={contentType} basePath={path} />
+      <ContentList contentType={contentType} items={content} basePath={path} />
     </Container>
   );
 }

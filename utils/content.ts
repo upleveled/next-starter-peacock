@@ -24,6 +24,9 @@ export type IContent = {
   selectedWork?: boolean;
   description?: string;
   previewImage?: string;
+
+  tags?: string[];
+  category?: string;
 };
 
 export type IContentType = 'articles' | 'notes' | 'works';
@@ -33,7 +36,7 @@ export type IContentType = 'articles' | 'notes' | 'works';
  * @param a {Date} - Date of post 1
  * @param b {Date} - Date of post 2
  */
-export const sortByDate = (a, b) => {
+export const sortByDate = (a: any, b: any) => {
   if (a.date > b.date) {
     return -1;
   } else if (a.date < b.date) {
@@ -204,7 +207,7 @@ export const getContentList = (contentType: IContentType): IContent[] => {
         ...data,
         previewImage: data.previewImage ?? '/images/article-preview.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
   return content.filter((x) => !x.draft).sort(sortByDate);
@@ -250,7 +253,7 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
         ...data,
         previewImage: data.previewImage || '/images/image-placeholder.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
   const filteredContent = contentData.filter((content) => {
@@ -303,7 +306,7 @@ export const getContentInCategory = (
         ...data,
         previewImage: data.previewImage || '/images/image-placeholder.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
   const filteredContent = contentData.filter((content) => {
