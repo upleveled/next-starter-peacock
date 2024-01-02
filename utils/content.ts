@@ -23,9 +23,6 @@ const workDirectory = path.join(process.cwd(), 'content', 'work');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
 const articlesDirectory = path.join(process.cwd(), 'content', 'articles');
 
-<<<<<<< HEAD:lib/content.ts
-type IContentType = 'articles' | 'notes' | 'work';
-=======
 export type IContent = {
   title: string;
   slug: string;
@@ -40,7 +37,6 @@ export type IContent = {
 }
 
 export type IContentType = 'articles' | 'notes' | 'works';
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
 
 /**
  * Get IDs of all markdown post
@@ -74,11 +70,7 @@ export const getAllContentIds = (contentType: IContentType) => {
       filenames = fs.readdirSync(notesDirectory);
       break;
 
-<<<<<<< HEAD:lib/content.ts
-    case 'work':
-=======
     case 'works':
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
       baseDir = workDirectory;
       filenames = fs.readdirSync(workDirectory);
       break;
@@ -113,11 +105,7 @@ export const getAllContentIds = (contentType: IContentType) => {
 export const getContentData = async (id: string, contentType: IContentType) => {
   let contentTypeDirectory: string;
   let filenames;
-<<<<<<< HEAD:lib/content.ts
-  switch (contentType) {
-=======
   switch (contentType.toLowerCase()) {
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
     case 'articles':
       filenames = fs.readdirSync(articlesDirectory);
       contentTypeDirectory = articlesDirectory;
@@ -128,11 +116,7 @@ export const getContentData = async (id: string, contentType: IContentType) => {
       contentTypeDirectory = notesDirectory;
       break;
 
-<<<<<<< HEAD:lib/content.ts
-    case 'work':
-=======
     case 'works':
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
       filenames = fs.readdirSync(workDirectory);
       contentTypeDirectory = workDirectory;
       break;
@@ -157,16 +141,11 @@ export const getContentData = async (id: string, contentType: IContentType) => {
   const fileContents = fs.readFileSync(fullPath, 'utf-8');
 
   const matterResult = matter(fileContents);
-<<<<<<< HEAD:lib/content.ts
-  const processedContent = await remark()
-    .use(highlight)
-=======
   const processedContent = await unified()
     .use(remarkParse)
     .use(html, { sanitize: false })
     .use(gfm)
     .use(rehypeHighlight)
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
     .process(matterResult.content);
 
   const contentHtml = processedContent.toString();
@@ -181,11 +160,8 @@ export const getContentData = async (id: string, contentType: IContentType) => {
     description: matterResult.data.description || '',
     tags: matterResult.data.tags || [],
     category: matterResult.data.category || '',
-<<<<<<< HEAD:lib/content.ts
-=======
     problem: matterResult.data.problem || '',
     techStack: matterResult.data.techStack || [],
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
   };
 };
 
@@ -218,19 +194,11 @@ export const getContentList = (contentType: IContentType): IContent[] => {
       throw new Error('You have to provide a content type');
   }
 
-<<<<<<< HEAD:lib/content.ts
-  const content: { date?: Date; previewImage: any; id: string }[] = contentFiles
-    .filter((contentFile) => contentFile.endsWith('.md'))
-    .map((contentFile) => {
-      const filePath = `${contentDir}/${contentFile}`;
-      const rawContent = fs.readFileSync(filePath, {
-=======
   const content = contentFiles
     .filter((content) => content.endsWith('.md'))
     .map((content) => {
       const path = `${contentDir}/${content}`;
       const rawContent = fs.readFileSync(path, {
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
         encoding: 'utf-8',
       });
 
@@ -238,11 +206,7 @@ export const getContentList = (contentType: IContentType): IContent[] => {
 
       return {
         ...data,
-<<<<<<< HEAD:lib/content.ts
-        previewImage: data.previewImage || '/images/image-placeholder.png',
-=======
         previewImage: data.previewImage ?? '/images/article-preview.png',
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
         id: uuid(),
       };
     });
@@ -266,11 +230,7 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
       contentDir = notesDirectory;
       break;
 
-<<<<<<< HEAD:lib/content.ts
-    case 'work':
-=======
     case 'works':
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
       contentDir = workDirectory;
       break;
 
@@ -280,19 +240,11 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
 
   const contentFiles = fs.readdirSync(contentDir);
 
-<<<<<<< HEAD:lib/content.ts
-  const contentData = contentFiles
-    .filter((contentFile) => contentFile.endsWith('.md'))
-    .map((contentFile) => {
-      const filePath = `${contentDir}/${contentFile}`;
-      const rawContent = fs.readFileSync(filePath, {
-=======
   let contentData = contentFiles
     .filter((content) => content.endsWith('.md'))
     .map((content) => {
       const path = `${contentDir}/${content}`;
       const rawContent = fs.readFileSync(path, {
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
         encoding: 'utf-8',
       });
 
@@ -334,11 +286,7 @@ export const getContentInCategory = (
       contentDir = notesDirectory;
       break;
 
-<<<<<<< HEAD:lib/content.ts
-    case 'work':
-=======
     case 'works':
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
       contentDir = workDirectory;
       break;
 
@@ -348,19 +296,11 @@ export const getContentInCategory = (
 
   const contentFiles = fs.readdirSync(contentDir);
 
-<<<<<<< HEAD:lib/content.ts
-  const contentData = contentFiles
-    .filter((contentFile) => contentFile.endsWith('.md'))
-    .map((contentFile) => {
-      const filePath = `${contentDir}/${contentFile}`;
-      const rawContent = fs.readFileSync(filePath, {
-=======
   let contentData = contentFiles
     .filter((content) => content.endsWith('.md'))
     .map((content) => {
       const path = `${contentDir}/${content}`;
       const rawContent = fs.readFileSync(path, {
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
         encoding: 'utf-8',
       });
 
@@ -382,8 +322,6 @@ export const getContentInCategory = (
 
   return filteredContent.sort(sortByDate);
 };
-<<<<<<< HEAD:lib/content.ts
-=======
 
 /**
  * Sorts content by their dates
@@ -403,4 +341,3 @@ export const sortByDate = (a, b) => {
 export const getContentTypes = () => {
   return Array.from(CONTENT_TYPES_MAP.keys());
 }
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
