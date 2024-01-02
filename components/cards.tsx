@@ -1,11 +1,11 @@
-import { IContent } from '@utils/content';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IContent } from '../utils/content';
 
 export interface ICard {
   basePath: string;
-  items: IContent[]
+  items: IContent[];
 }
 
 /**
@@ -18,12 +18,10 @@ const Cards = ({ items, basePath }: ICard) => {
     <section className="flex sm:flex-row flex-col flex-wrap justify-start">
       {items.map((singleCard, idx) => (
         <article
-          className={
-            clsx(
-              'article mb-[2%] overflow-hidden group sm:basis-[47%] lg:basis-[32%]',
-              (idx === items.length - 1) ? 'sm:mr-0' : 'sm:mr-2'
-            )
-          }
+          className={clsx(
+            'article mb-[2%] overflow-hidden group sm:basis-[47%] lg:basis-[32%]',
+            idx === items.length - 1 ? 'sm:mr-0' : 'sm:mr-2',
+          )}
           key={singleCard.slug}
         >
           <Link
@@ -44,9 +42,7 @@ const Cards = ({ items, basePath }: ICard) => {
             <time className="text-sm text-accent-4 mb-2 block">
               {singleCard.date.toString()}
             </time>
-            <h2
-              className="font-bold text-lg mb-1 group-hover:underline max-w-[80%] font-display"
-            >
+            <h2 className="font-bold text-lg mb-1 group-hover:underline max-w-[80%] font-display">
               {singleCard.title}
             </h2>
 

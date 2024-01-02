@@ -1,13 +1,12 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
-import path from 'path';
 import rehypeHighlight from 'rehype-highlight';
 import gfm from 'remark-gfm';
 import html from 'remark-html';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
-import { IContentData } from '../app/[contentType]/[slug]/page';
 import { CONTENT_TYPES_MAP } from './content-types';
 
 const workDirectory = path.join(process.cwd(), 'content', 'work');
@@ -312,21 +311,6 @@ export const getContentInCategory = (
     );
 
   return filteredContent.sort(sortByDate);
-};
-
-/**
- * Sorts content by their dates
- * @param a {Date} - Date of post 1
- * @param b {Date} - Date of post 2
- */
-export const sortByDate = (a, b) => {
-  if (a.date > b.date) {
-    return -1;
-  } else if (a.date < b.date) {
-    return 1;
-  } else {
-    return 0;
-  }
 };
 
 export const getContentTypes = () => {

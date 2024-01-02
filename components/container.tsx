@@ -1,5 +1,5 @@
-import { cn } from '@utils/cn';
 import { FC, HTMLAttributes } from 'react';
+import { cn } from '../utils/cn';
 
 export type IWidth = 'default' | 'bleed' | 'narrow';
 export interface IContainer extends HTMLAttributes<HTMLElement> {
@@ -9,16 +9,16 @@ export interface IContainer extends HTMLAttributes<HTMLElement> {
 const getMaxWidth = (width: IWidth) => {
   switch (width) {
     case 'bleed':
-      return 'max-w-full px-4 lg:max-w-[90%] lg:px-0'
+      return 'max-w-full px-4 lg:max-w-[90%] lg:px-0';
 
     case 'default':
     default:
-      return 'max-w-6xl'
+      return 'max-w-6xl';
 
     case 'narrow':
-      return 'max-w-4xl'
+      return 'max-w-4xl';
   }
-}
+};
 
 const Container: FC<IContainer> = ({
   children,
@@ -26,16 +26,15 @@ const Container: FC<IContainer> = ({
   className,
   ...rest
 }) => {
-  const maxWidth = getMaxWidth(width)
+  const maxWidth = getMaxWidth(width);
 
   return (
     <section
-      className={
-        cn(
-          'my-0 mx-auto py-0 px-[4%] xl:px-0' /**px-[4%]*/,
-          className,
-          maxWidth
-        )}
+      className={cn(
+        'my-0 mx-auto py-0 px-[4%] xl:px-0' /** px-[4%] */,
+        className,
+        maxWidth,
+      )}
       {...rest}
     >
       {children}
