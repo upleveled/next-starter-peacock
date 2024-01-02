@@ -1,11 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import highlight from 'remark-highlight.js';
-import { v4 as uuid } from 'uuid';
-
-=======
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
@@ -17,7 +9,6 @@ import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
 import { IContentData } from '../app/[contentType]/[slug]/page';
 import { CONTENT_TYPES_MAP } from './content-types';
->>>>>>> fb34043bc4b3e891eec6061e9d438eb86a8c5478:utils/content.ts
 
 const workDirectory = path.join(process.cwd(), 'content', 'work');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
@@ -26,15 +17,15 @@ const articlesDirectory = path.join(process.cwd(), 'content', 'articles');
 export type IContent = {
   title: string;
   slug: string;
-  basePath: string
+  basePath: string;
   date: Date;
   id: string;
-  draft?: boolean
+  draft?: boolean;
 
-  selectedWork?: boolean
+  selectedWork?: boolean;
   description?: string;
-  previewImage?: string
-}
+  previewImage?: string;
+};
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
@@ -211,7 +202,7 @@ export const getContentList = (contentType: IContentType): IContent[] => {
       };
     });
 
-  return content.filter(x => !x.draft).sort(sortByDate);
+  return content.filter((x) => !x.draft).sort(sortByDate);
 };
 
 /**
@@ -340,4 +331,4 @@ export const sortByDate = (a, b) => {
 
 export const getContentTypes = () => {
   return Array.from(CONTENT_TYPES_MAP.keys());
-}
+};
