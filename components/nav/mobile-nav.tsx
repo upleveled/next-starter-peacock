@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { cn } from '@utils/cn';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { cn } from '../../utils/cn';
 import { useMenuContext } from '../MenuContext';
 
 // TODO: have some kind of functionality for closing the mobile menu when navigation occurs
@@ -12,11 +12,11 @@ import { useMenuContext } from '../MenuContext';
 const variants = {
   hidden: { opacity: 0, y: 40 },
   enter: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 10 }
-}
+  exit: { opacity: 0, y: 10 },
+};
 
 export function MobileNav() {
-  const { menuOpen, toggleMenuOpen } = useMenuContext()
+  const { menuOpen, toggleMenuOpen } = useMenuContext();
 
   return (
     <AnimatePresence>
@@ -34,31 +34,51 @@ export function MobileNav() {
           <div className="flex items-center justify-center min-h-full">
             <ul className="list-none">
               <li className="text-center mb-4">
-                <Link href="/" className="text-center mb-4" onClick={() => toggleMenuOpen()}>
+                <Link
+                  href="/"
+                  className="text-center mb-4"
+                  onClick={() => toggleMenuOpen()}
+                >
                   Home
                 </Link>
               </li>
 
               <li className="text-center mb-4">
-                <Link href="/works" className="text-lg" onClick={() => toggleMenuOpen()}>
+                <Link
+                  href="/works"
+                  className="text-lg"
+                  onClick={() => toggleMenuOpen()}
+                >
                   Works
                 </Link>
               </li>
 
               <li className="text-center mb-4">
-                <Link href="/articles" className="text-lg" onClick={() => toggleMenuOpen()}>
+                <Link
+                  href="/articles"
+                  className="text-lg"
+                  onClick={() => toggleMenuOpen()}
+                >
                   Articles
                 </Link>
               </li>
 
               <li className="text-center mb-4">
-                <Link href="/notes" className="text-lg" onClick={() => toggleMenuOpen()}>
+                <Link
+                  href="/notes"
+                  className="text-lg"
+                  onClick={() => toggleMenuOpen()}
+                >
                   Notes
                 </Link>
               </li>
 
               <li className="text-center mb-4">
-                <Link href="/about" className="text-lg" onClick={() => toggleMenuOpen()}>
+                <Link
+                  href="/about"
+                  className="text-lg"
+                  onClick={() => toggleMenuOpen()}
+                >
                   About
                 </Link>
               </li>
@@ -67,7 +87,7 @@ export function MobileNav() {
                 <a
                   href="https://github.com/vickOnRails/next-starter-peacock"
                   target="_blank"
-                  rel="noopener norefferer"
+                  rel="noopener noreferrer"
                 >
                   Source
                 </a>
@@ -78,4 +98,4 @@ export function MobileNav() {
       )}
     </AnimatePresence>
   );
-};
+}

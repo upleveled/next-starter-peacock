@@ -1,5 +1,5 @@
-import { IContent } from '@utils/content';
 import React from 'react';
+import { IContent } from '../../utils/content';
 import { Note } from './note';
 
 interface INotes {
@@ -22,6 +22,6 @@ export function Notes({ notes, basePath }: INotes) {
       ))}
     </section>
   );
-};
+}
 
 export default Notes;

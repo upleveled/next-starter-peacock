@@ -1,7 +1,7 @@
-import { IContent } from '@utils/content';
 import Link from 'next/link';
 import React from 'react';
 import { Calendar } from 'react-feather';
+import { IContent } from '../../utils/content';
 
 export function Note({ date, title, slug, basePath }: IContent) {
   return (
