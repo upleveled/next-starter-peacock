@@ -8,7 +8,7 @@ Peacock is a NextJS portfolio Starter for software engineers and designers. Show
 
 - Styled with Tailwind CSS
 - Written in TypeScript & Next 14 (RSC)
-- Blog, Notes and Work content types 
+- Blog, Notes and Work content types
 
 ## Getting Started
 
@@ -20,46 +20,19 @@ Peacock is a NextJS portfolio Starter for software engineers and designers. Show
 git clone https://github.com/<your-username>/next-starter-peacock.git
 ```
 
-3. Install the dependencies for `canvas` (see [Automattic/node-canvas#1065](https://github.com/Automattic/node-canvas/issues/1065)).
-
-on macOS:
+3. Jump into the directory and Install dependencies
 
 ```bash
-brew install pkg-config pixman cairo pango
+cd next-starter-peacock && pnpm install
 ```
 
-on Windows:
+4. Start the dev server
 
 ```bash
-choco install -y python visualstudio2017-workload-vctools gtk-runtime libjpeg-turbo gtk-runtime
-npm config set msvs_version 2017
+pnpm dev
 ```
 
-> NOTE: In case this command doesn't work, You may need the `cairo` library, which is bundled in GTK. Download the GTK 2 bundle for [Win32](http://ftp.gnome.org/pub/GNOME/binaries/win32/gtk+/2.24/gtk+-bundle_2.24.10-20120208_win32.zip) or [Win64](http://ftp.gnome.org/pub/GNOME/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip). Unzip the contents in `C:\GTK`
->
-> You may also find more info about `canvas` windows manual installation in the [Wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows).
-
-4. Jump into the directory and Install dependencies
-
-```bash
-cd next-starter-peacock && yarn
-
-or
-
-cd next-starter-peacock && npm install
-```
-
-5. Start the dev server
-
-```bash
-yarn dev
-
-or
-
-npm run dev
-```
-
-6. Find `config/index.json`, change `name` and `title` to your name and title. Save and open [http://localhost:3000](http://localhost:3000) with your browser 💥💥💥. See the results 😊.
+5. Find `config/index.json`, change `name` and `title` to your name and title. Save and open [http://localhost:3000](http://localhost:3000) with your browser 💥💥💥. See the results 😊.
 
 ---
 
