@@ -24,15 +24,18 @@ export type IContent = {
   selectedWork?: boolean;
   description?: string;
   previewImage?: string;
+
+  tags?: string[];
+  category?: string;
 };
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
 /**
- * Get IDs of all markdown post
- * @param {string} contentType Type of content to get ids
+ * Sorts content by their dates
+ * @param a {Date} - Date of post 1
+ * @param b {Date} - Date of post 2
  */
-
 export const sortByDate = (a: { date?: Date }, b: { date?: Date }) => {
   if (!a.date || !b.date) return 0;
   if (a.date > b.date) {
@@ -43,6 +46,11 @@ export const sortByDate = (a: { date?: Date }, b: { date?: Date }) => {
     return 0;
   }
 };
+
+/**
+ * Get IDs of all markdown post
+ * @param {string} contentType Type of content to get ids
+ */
 
 export const getAllContentIds = (contentType: IContentType) => {
   let filenames;
@@ -198,7 +206,7 @@ export const getContentList = (contentType: IContentType): IContent[] => {
         ...data,
         previewImage: data.previewImage ?? '/images/article-preview.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
   return content.filter((x) => !x.draft).sort(sortByDate);
@@ -231,7 +239,7 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
   const contentFiles = fs.readdirSync(contentDir);
 
   const contentData = contentFiles
-    .filter((contentFile) => contentFile.endsWith('.md'))
+    .filter((content) => content.endsWith('.md'))
     .map((content) => {
       const contentPath = `${contentDir}/${content}`;
       const rawContent = fs.readFileSync(contentPath, {
@@ -244,15 +252,12 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
         ...data,
         previewImage: data.previewImage || '/images/image-placeholder.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
-  const filteredContent: { date?: Date; previewImage: any; id: string }[] =
-    contentData.filter(
-      (content: { [key: string]: any; previewImage: any; id: string }) => {
-        return content.tags && content.tags.includes(tag);
-      },
-    );
+  const filteredContent = contentData.filter((content) => {
+    return content.tags && content.tags.includes(tag);
+  });
 
   return filteredContent.sort(sortByDate);
 };
@@ -287,7 +292,7 @@ export const getContentInCategory = (
   const contentFiles = fs.readdirSync(contentDir);
 
   const contentData = contentFiles
-    .filter((contentFile) => contentFile.endsWith('.md'))
+    .filter((content) => content.endsWith('.md'))
     .map((content) => {
       const contentPath = `${contentDir}/${content}`;
       const rawContent = fs.readFileSync(contentPath, {
@@ -300,15 +305,12 @@ export const getContentInCategory = (
         ...data,
         previewImage: data.previewImage || '/images/image-placeholder.png',
         id: uuid(),
-      };
+      } as IContent;
     });
 
-  const filteredContent: { date?: Date; previewImage: any; id: string }[] =
-    contentData.filter(
-      (content: { [key: string]: any; previewImage: any; id: string }) => {
-        return content.category && content.category === category;
-      },
-    );
+  const filteredContent = contentData.filter((content) => {
+    return content.category && content.category === category;
+  });
 
   return filteredContent.sort(sortByDate);
 };

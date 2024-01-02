@@ -9,9 +9,16 @@ import { contentTypesMap } from '../../../../utils/content-types';
 /**
  * Index page `/index`
  */
-export default function ContentListPage({ params }) {
-  const contentType = params.contentType as IContentType;
-  const tag = params.tag as IContentType;
+export default function ContentListPage({
+  params,
+}: {
+  params: {
+    contentType: IContentType;
+    tag: IContentType;
+  };
+}) {
+  const contentType = params.contentType;
+  const tag = params.tag;
 
   const content = getContentWithTag(tag, contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
@@ -23,7 +30,7 @@ export default function ContentListPage({ params }) {
         <h1 className="text-4xl font-bold font-display">{title} Tags</h1>
         <p className="text-accent-4 text-lg">{description}</p>
       </section>
-      <ContentList basePath={path} items={content} contentType={contentType} />
+      <ContentList contentType={contentType} items={content} basePath={path} />
     </Container>
   );
 }
