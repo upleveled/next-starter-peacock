@@ -2,18 +2,19 @@ import { expect, test } from '@playwright/test';
 
 test('Navigate and check content', async ({ page }) => {
   await page.goto('/');
+  await expect(page.getByTestId('workPageLink')).toBeVisible();
   await expect(page.getByTestId('articlesPageLink')).toBeVisible();
   await expect(page.getByTestId('notesPageLink')).toBeVisible();
   await expect(page.getByTestId('aboutPageLink')).toBeVisible();
   await expect(page.getByTestId('rssPageLink')).toBeVisible();
   await expect(page.getByTestId('pageTitle')).toHaveText(
-    'NextJS Starter Peacock',
+    'Senior Software Engineer',
   );
 
   await page.getByTestId('workPageLink').click();
   await page.waitForURL('/works');
-  await expect(page).toHaveTitle('Works & Projects | NextJS Starter Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('Works & Projects');
+  await expect(page).toHaveTitle('Selected Works | NextJS Starter Peacock');
+  await expect(page.getByTestId('pageTitle')).toHaveText('Selected Works');
 
   await page.getByTestId('articlesPageLink').click();
   await page.waitForURL('/articles');
@@ -27,9 +28,9 @@ test('Navigate and check content', async ({ page }) => {
 
   await page.getByTestId('aboutPageLink').click();
   await page.waitForURL('/about');
-  await expect(page).toHaveTitle('About | NextJS Starter Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('About Me🧘🏾‍♂️');
+  await expect(page).toHaveTitle('About Me | Peacock');
+  await expect(page.getByTestId('pageTitle')).toHaveText('About Me 🧘🏾‍♂️');
   await expect(
-    await page.locator('[data-test-id="rssPageLink"] a').getAttribute('href'),
+    await page.locator('[data-test-id="rssPageLink"]').getAttribute('href'),
   ).toContain('/rss.xml');
 });
