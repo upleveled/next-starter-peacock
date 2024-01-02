@@ -36,7 +36,7 @@ export function generateStaticParams() {
  * Index page `/index`
  */
 export default function ContentListPage({ params }: { params: Params }) {
-  const contentType = params.contentType as IContentType;
+  const contentType = params.contentType;
 
   // redirect to 404 with wrong contentType
   if (!contentTypesMap.has(contentType)) {

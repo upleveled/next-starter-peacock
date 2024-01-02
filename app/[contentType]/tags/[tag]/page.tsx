@@ -1,10 +1,10 @@
-// TODO: I need to rethink the tags page. I don't think I want to have a page for each tag.
-// /notes/tags/programming & /articles/tags/programming. Instead I want to have a single page for all tags
-// /tags/programming. I think this will be easier to manage and will be more intuitive for readers.
-
 import { Container, ContentList } from '../../../../components';
 import { getContentWithTag, IContentType } from '../../../../utils/content';
 import { contentTypesMap } from '../../../../utils/content-types';
+
+// TODO: I need to rethink the tags page. I don't think I want to have a page for each tag.
+// /notes/tags/programming & /articles/tags/programming. Instead I want to have a single page for all tags
+// /tags/programming. I think this will be easier to manage and will be more intuitive for readers.
 
 /**
  * Index page `/index`

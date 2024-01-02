@@ -1,4 +1,4 @@
-export interface IExperiments {
+interface IExperiments {
   title: string;
   description: string;
   link: string;
