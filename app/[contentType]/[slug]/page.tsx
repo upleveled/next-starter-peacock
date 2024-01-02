@@ -13,7 +13,11 @@ import {
 import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';
 
-export async function generateMetadata({ params }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
   const { title, previewImage, description } = await getContentData(
     params.slug,
     params.contentType,
@@ -42,17 +46,15 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 export function generateStaticParams() {
   const contentTypes = getContentTypes();
 
-  return contentTypes
-    .map((contentType) => {
-      const contentList = getContentList(contentType);
-      return contentList.map(({ slug }) => {
-        return {
-          contentType,
-          slug,
-        };
-      });
-    })
-    .flat();
+  return contentTypes.flatMap((contentType) => {
+    const contentList = getContentList(contentType);
+    return contentList.map(({ slug }) => {
+      return {
+        contentType,
+        slug,
+      };
+    });
+  });
 }
 
 /**
@@ -68,8 +70,8 @@ type Params = {
   contentType: IContentType;
 };
 
-export default async function ContentPage({ params }) {
-  const { slug, contentType } = params as Params;
+export default async function ContentPage({ params }: { params: Params }) {
+  const { slug, contentType } = params;
 
   if (!contentTypesMap.has(contentType)) {
     return notFound();
@@ -124,7 +126,7 @@ function WorkPage({ work }: { work: IContentData }) {
         <ul>
           <TechStack techStack={work.techStack ?? []} />
           <MetadataListItem item="Date" value={work.date.toString()} />
-          {work.problem && (
+          {Boolean(work.problem) && (
             <MetadataListItem item="Problem" value={work.problem ?? ''} />
           )}
         </ul>
@@ -162,7 +164,7 @@ function TechStack({ techStack }: { techStack: string[] }) {
       <ul className="flex flex-wrap gap-2 flex-grow-0">
         {techStack.map((tech) => (
           <li
-            key={tech}
+            key={`techStack-${tech}`}
             className="select-none bg-accent-8 text-accent-2 px-2 py-1 rounded-md"
           >
             {tech}

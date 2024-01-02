@@ -13,7 +13,7 @@ export function Notes({ notes, basePath }: INotes) {
       {notes.map((note) => (
         <Note
           id={note.id}
-          key={note.slug}
+          key={`note-${note.slug}`}
           basePath={basePath}
           title={note.title}
           slug={note.slug}

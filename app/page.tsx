@@ -44,7 +44,7 @@ const Index = () => {
       <Header />
       <Container className="flex flex-col gap-8 mb-20 border-b border-accent-8 pb-9">
         {content.map((work) => (
-          <WorkItem key={work.slug} work={work} />
+          <WorkItem key={`work-${work.slug}`} work={work} />
         ))}
       </Container>
       <Testimonials testimonials={testimonials} />

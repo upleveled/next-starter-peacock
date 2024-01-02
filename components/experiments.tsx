@@ -14,7 +14,10 @@ export function ExperimentsSection() {
 
         <section className="flex flex-wrap">
           {experiments.map((experiment) => (
-            <ExperimentItem key={experiment.link} experiment={experiment} />
+            <ExperimentItem
+              key={`experiment-${experiment.link}`}
+              experiment={experiment}
+            />
           ))}
         </section>
       </Container>

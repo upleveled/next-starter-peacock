@@ -8,7 +8,7 @@ interface ContentListProps extends HTMLAttributes<HTMLElement> {
   basePath: string;
 }
 
-export function ContentList<T>({
+export function ContentList({
   items,
   contentType,
   basePath,
@@ -21,7 +21,7 @@ export function ContentList<T>({
           {items
             .filter((x) => x.selectedWork)
             .map((item) => (
-              <WorkItem key={item.slug} work={item} />
+              <WorkItem key={`item-${item.slug}`} work={item} />
             ))}
         </section>
 
@@ -46,7 +46,7 @@ function WorkListGrid({ works }: { works: IContent[] }) {
   return (
     <section className="flex flex-col lg:flex-row flex-wrap gap-8 pb-10 mb-10 w-full">
       {works.map((item) => (
-        <WorkItem key={item.slug} work={item} grid />
+        <WorkItem key={`item-${item.slug}`} work={item} grid />
       ))}
     </section>
   );

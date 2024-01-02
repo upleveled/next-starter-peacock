@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import { Codepen, ExternalLink, GitHub } from 'react-feather';
 import Tilt from 'react-parallax-tilt';
 
 export function ExperimentItem({ experiment }) {
   let icon;
-  const classes = 'text-bright'
+  const classes = 'text-bright';
 
   switch (experiment.location) {
     case 'codepen':
@@ -37,11 +37,16 @@ export function ExperimentItem({ experiment }) {
         <h3 className="mb-2 text-base">{experiment.title}</h3>
         <p className="mb-2">{experiment.description}</p>
         <ul className="list-none">
-          {experiment.tags.map((tag, index) => (
-            <li key={index} className="inline-block text-xs mr-2 border-2 border-primary text-primary py-1 px-3 mb-1">{tag}</li>
+          {experiment.tags.map((tag) => (
+            <li
+              key={`experiment-${tag}`}
+              className="inline-block text-xs mr-2 border-2 border-primary text-primary py-1 px-3 mb-1"
+            >
+              {tag}
+            </li>
           ))}
         </ul>
       </a>
     </Tilt>
   );
-};
+}

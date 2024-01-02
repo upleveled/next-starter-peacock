@@ -22,7 +22,7 @@ const Cards = ({ items, basePath }: ICard) => {
             'article mb-[2%] overflow-hidden group sm:basis-[47%] lg:basis-[32%]',
             idx === items.length - 1 ? 'sm:mr-0' : 'sm:mr-2',
           )}
-          key={singleCard.slug}
+          key={`singleCard-${singleCard.slug}`}
         >
           <Link
             href={`/${basePath}/[id]`}
@@ -46,7 +46,7 @@ const Cards = ({ items, basePath }: ICard) => {
               {singleCard.title}
             </h2>
 
-            {singleCard.description && (
+            {Boolean(singleCard.description) && (
               <p className="transition-transform text-accent-4 group-hover:text-accent-3">
                 {singleCard.description}
               </p>

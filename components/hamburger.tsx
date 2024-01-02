@@ -1,10 +1,9 @@
 import { HTMLAttributes, useContext } from 'react';
 import { cn } from '../utils/cn';
-import { MenuContext } from './MenuContext';
+import { menuContext } from './MenuContext';
 
 export const Hamburger = (props: HTMLAttributes<HTMLElement>) => {
-  const menuContext = useContext(MenuContext);
-  const { toggleMenuOpen, menuOpen } = menuContext;
+  const { toggleMenuOpen, menuOpen } = useContext(menuContext);
 
   return (
     <button
