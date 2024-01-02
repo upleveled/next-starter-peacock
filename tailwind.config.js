@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         body: 'var(--font-manrope)',
-        display: 'var(--font-young-serif)'
+        display: 'var(--font-young-serif)',
       },
       colors: {
         background: 'var(--background)',
@@ -27,10 +27,9 @@ module.exports = {
         'accent-8': 'var(--accent-8)',
         'accent-delight': 'hsl(var(--accent-delight))',
         'accent-bob': 'hsl(var(--accent-bob))',
-        'primary': 'hsl(var(--primary))',
-      }
-    }
+        primary: 'hsl(var(--primary))',
+      },
+    },
   },
   plugins: [],
-}
-
+};
