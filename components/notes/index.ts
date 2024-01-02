@@ -1,2 +1,2 @@
-export { Note } from './note'
-export { Notes } from './notes'
+export { Note } from './note';
+export { Notes } from './notes';

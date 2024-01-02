@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
+import fs from 'node:fs';
+import path from 'node:path';
 import { Feed } from 'feed';
-import fs from 'fs';
-import path from 'path';
-
 import { author, site } from '../config/index.json';
-import { IContent, getContentList, sortByDate } from './content';
+import { getContentList, IContent, sortByDate } from './content';
 
 const { siteName, siteTitle, siteUrl } = site;
 
@@ -22,15 +20,15 @@ export function generateRSS() {
       link: siteUrl,
       favicon: `${siteUrl}/favicon.ico`,
       feedLinks: {
-        rss: `${siteUrl}/rss.xml`
+        rss: `${siteUrl}/rss.xml`,
       },
       image: `${siteUrl}/Logo.png`,
       copyright: `${year} ${author.name}`,
       language: 'en',
       author: {
         name: author.name,
-        link: author.twitterHandle
-      }
+        link: author.twitterHandle,
+      },
     });
 
     articlesContent.sort(sortByDate).forEach((contentItem: IContent) => {
@@ -42,10 +40,12 @@ export function generateRSS() {
         id: slug,
         description,
         image: path.join(siteUrl, previewImage!),
-        author: [{
-          name: author.name,
-          link: author.twitterHandle
-        }],
+        author: [
+          {
+            name: author.name,
+            link: author.twitterHandle,
+          },
+        ],
         date: new Date(date),
         link: url,
       });
@@ -56,7 +56,7 @@ export function generateRSS() {
     console.log('🎉 - RSS feed generated at rss.xml');
   } catch (ex) {
     console.error(
-      ex
+      ex,
       // `😢 An error occurred while generating XML scripts: ${ex.message}`
     );
   }
