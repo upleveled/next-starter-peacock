@@ -4,7 +4,7 @@
 
 import { Container, ContentList } from '../../../../components';
 import { getContentWithTag, IContentType } from '../../../../utils/content';
-import { CONTENT_TYPES_MAP } from '../../../../utils/content-types';
+import { contentTypesMap } from '../../../../utils/content-types';
 
 /**
  * Index page `/index`
@@ -15,7 +15,7 @@ export default function ContentListPage({ params }) {
 
   const content = getContentWithTag(tag, contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
-  const { title, path, description } = CONTENT_TYPES_MAP.get(contentType);
+  const { title, path, description } = contentTypesMap.get(contentType);
 
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>

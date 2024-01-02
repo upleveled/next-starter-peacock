@@ -10,7 +10,7 @@ import {
   getContentTypes,
   IContentType,
 } from '../../../utils/content';
-import { CONTENT_TYPES_MAP } from '../../../utils/content-types';
+import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';
 
 export async function generateMetadata({ params }): Promise<Metadata> {
@@ -71,7 +71,7 @@ type Params = {
 export default async function ContentPage({ params }) {
   const { slug, contentType } = params as Params;
 
-  if (!CONTENT_TYPES_MAP.has(contentType)) {
+  if (!contentTypesMap.has(contentType)) {
     return notFound();
   }
 

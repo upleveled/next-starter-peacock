@@ -1,5 +1,5 @@
-import { ExperimentItem } from '@components';
 import { experiments } from '../content/experiments';
+import { ExperimentItem } from './';
 import { Container } from './container';
 
 export function ExperimentsSection() {

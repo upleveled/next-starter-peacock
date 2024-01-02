@@ -7,12 +7,12 @@ import {
   getContentTypes,
   IContentType,
 } from '../../utils/content';
-import { CONTENT_TYPES_MAP } from '../../utils/content-types';
+import { contentTypesMap } from '../../utils/content-types';
 import { generateRSS } from '../../utils/rss';
 
 /** generate list page metadata */
 export function generateMetadata({ params }): Metadata {
-  const contentType = CONTENT_TYPES_MAP.get(params.contentType);
+  const contentType = contentTypesMap.get(params.contentType);
   return {
     title: `${contentType.title} | ${site.siteTitle}`,
     description: contentType.description,
@@ -35,13 +35,13 @@ export default function ContentListPage({ params }) {
   const contentType = params.contentType as IContentType;
 
   // redirect to 404 with wrong contentType
-  if (!CONTENT_TYPES_MAP.has(contentType)) {
+  if (!contentTypesMap.has(contentType)) {
     return notFound();
   }
 
   const content = getContentList(contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
-  const { title, path, description } = CONTENT_TYPES_MAP.get(contentType);
+  const { title, path, description } = contentTypesMap.get(contentType);
 
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>

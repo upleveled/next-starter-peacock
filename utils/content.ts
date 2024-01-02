@@ -7,7 +7,7 @@ import html from 'remark-html';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
-import { CONTENT_TYPES_MAP } from './content-types';
+import { contentTypesMap } from './content-types';
 
 const workDirectory = path.join(process.cwd(), 'content', 'work');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
@@ -185,10 +185,10 @@ export const getContentList = (contentType: IContentType): IContent[] => {
   }
 
   const content = contentFiles
-    .filter((content) => content.endsWith('.md'))
-    .map((content) => {
-      const path = `${contentDir}/${content}`;
-      const rawContent = fs.readFileSync(path, {
+    .filter((contentFile) => contentFile.endsWith('.md'))
+    .map((contentItem) => {
+      const contentPath = `${contentDir}/${contentItem}`;
+      const rawContent = fs.readFileSync(contentPath, {
         encoding: 'utf-8',
       });
 
@@ -230,11 +230,11 @@ export const getContentWithTag = (tag: string, contentType: IContentType) => {
 
   const contentFiles = fs.readdirSync(contentDir);
 
-  let contentData = contentFiles
-    .filter((content) => content.endsWith('.md'))
+  const contentData = contentFiles
+    .filter((contentFile) => contentFile.endsWith('.md'))
     .map((content) => {
-      const path = `${contentDir}/${content}`;
-      const rawContent = fs.readFileSync(path, {
+      const contentPath = `${contentDir}/${content}`;
+      const rawContent = fs.readFileSync(contentPath, {
         encoding: 'utf-8',
       });
 
@@ -286,11 +286,11 @@ export const getContentInCategory = (
 
   const contentFiles = fs.readdirSync(contentDir);
 
-  let contentData = contentFiles
-    .filter((content) => content.endsWith('.md'))
+  const contentData = contentFiles
+    .filter((contentFile) => contentFile.endsWith('.md'))
     .map((content) => {
-      const path = `${contentDir}/${content}`;
-      const rawContent = fs.readFileSync(path, {
+      const contentPath = `${contentDir}/${content}`;
+      const rawContent = fs.readFileSync(contentPath, {
         encoding: 'utf-8',
       });
 
@@ -314,5 +314,5 @@ export const getContentInCategory = (
 };
 
 export const getContentTypes = () => {
-  return Array.from(CONTENT_TYPES_MAP.keys());
+  return Array.from(contentTypesMap.keys());
 };

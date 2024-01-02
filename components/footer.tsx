@@ -1,5 +1,4 @@
-import { Container, Socials } from '@components';
-import { Codepen, GitHub, Linkedin, Twitter } from 'react-feather';
+import { Container, Socials } from './';
 
 export function Footer() {
   return (
