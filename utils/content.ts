@@ -36,6 +36,7 @@ export type IContentType = 'articles' | 'notes' | 'works';
  * @param a {Date} - Date of post 1
  * @param b {Date} - Date of post 2
  */
+
 export const sortByDate = (a: { date?: Date }, b: { date?: Date }) => {
   if (!a.date || !b.date) return 0;
   if (a.date > b.date) {
