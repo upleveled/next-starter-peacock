@@ -24,7 +24,6 @@ export type IContent = {
   selectedWork?: boolean;
   description?: string;
   previewImage?: string;
-
   tags?: string[];
   category?: string;
 };
