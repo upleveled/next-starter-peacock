@@ -20,7 +20,6 @@ export type IContent = {
   date: Date;
   id: string;
   draft?: boolean;
-
   selectedWork?: boolean;
   description?: string;
   previewImage?: string;
