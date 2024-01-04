@@ -42,17 +42,12 @@ export function Nav() {
             )}
 
             <nav className="hidden list-none md:flex md:items-center">
-              <NavItem dataTestId="workPageLink" title="Works" href="/works" />
-              <NavItem
-                dataTestId="articlesPageLink"
-                title="Articles"
-                href="/articles"
-              />
-              <NavItem dataTestId="notesPageLink" title="Notes" href="/notes" />
-              <NavItem dataTestId="aboutPageLink" title="About" href="/about" />
+              <NavItem title="Works" href="/works" />
+              <NavItem title="Articles" href="/articles" />
+              <NavItem title="Notes" href="/notes" />
+              <NavItem title="About" href="/about" />
 
               <NavItem
-                dataTestId="rssPageLink"
                 title={<Rss className="text-foreground" />}
                 href={rssLink}
                 external
@@ -84,12 +79,10 @@ export function Nav() {
 function NavItem({
   title,
   href,
-  dataTestId,
   external = false,
 }: {
   title: string | ReactNode;
   href: string;
-  dataTestId?: string;
   external?: boolean;
 }) {
   const classes =
@@ -98,7 +91,6 @@ function NavItem({
   if (external) {
     return (
       <a
-        data-test-id={dataTestId}
         href={href}
         className={classes}
         target="_blank"
@@ -110,7 +102,7 @@ function NavItem({
   }
 
   return (
-    <Link data-test-id={dataTestId} href={href} className={classes}>
+    <Link href={href} className={classes}>
       {title}
     </Link>
   );

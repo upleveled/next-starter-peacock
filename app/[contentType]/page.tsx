@@ -50,12 +50,7 @@ export default function ContentListPage({ params }: { params: Params }) {
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>
       <section className="flex flex-col py-20 gap-2 max-w-2xl">
-        <h1
-          data-test-id="pageTitle"
-          className="text-4xl font-bold font-display"
-        >
-          {title}
-        </h1>
+        <h1 className="text-4xl font-bold font-display">{title}</h1>
         <p className="text-accent-4 text-lg">{description}</p>
       </section>
 

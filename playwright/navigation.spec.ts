@@ -2,35 +2,38 @@ import { expect, test } from '@playwright/test';
 
 test('Navigate and check content', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByTestId('workPageLink')).toBeVisible();
-  await expect(page.getByTestId('articlesPageLink')).toBeVisible();
-  await expect(page.getByTestId('notesPageLink')).toBeVisible();
-  await expect(page.getByTestId('aboutPageLink')).toBeVisible();
-  await expect(page.getByTestId('rssPageLink')).toBeVisible();
-  await expect(page.getByTestId('pageTitle')).toHaveText(
-    'Senior Software Engineer',
-  );
+  await expect(page.getByRole('link', { name: 'Works' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Articles' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Notes' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'About' })).toBeVisible();
+  await expect(
+    page.locator('div:has-text("WorksArticlesNotesAbout") a').nth(4),
+  ).toBeVisible();
+  await expect(page.locator('h1')).toContainText('Senior Software Engineer');
 
-  await page.getByTestId('workPageLink').click();
+  await page.getByRole('link', { name: 'Works' }).click();
   await page.waitForURL('/works');
   await expect(page).toHaveTitle('Selected Works | NextJS Starter Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('Selected Works');
+  await expect(page.locator('h1')).toContainText('Selected Works');
 
-  await page.getByTestId('articlesPageLink').click();
+  await page.getByRole('link', { name: 'Articles' }).click();
   await page.waitForURL('/articles');
   await expect(page).toHaveTitle('Articles | NextJS Starter Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('Articles');
+  await expect(page.locator('h1')).toContainText('Articles');
 
-  await page.getByTestId('notesPageLink').click();
+  await page.getByRole('link', { name: 'Notes' }).click();
   await page.waitForURL('/notes');
   await expect(page).toHaveTitle('Notes | NextJS Starter Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('Notes');
+  await expect(page.locator('h1')).toContainText('Notes');
 
-  await page.getByTestId('aboutPageLink').click();
+  await page.getByRole('link', { name: 'About' }).click();
   await page.waitForURL('/about');
   await expect(page).toHaveTitle('About Me | Peacock');
-  await expect(page.getByTestId('pageTitle')).toHaveText('About Me 🧘🏾‍♂️');
+  await expect(page.getByRole('heading')).toContainText('About Me 🧘🏾‍♂️');
   await expect(
-    await page.locator('[data-test-id="rssPageLink"]').getAttribute('href'),
+    await page
+      .locator('div:has-text("WorksArticlesNotesAbout") a')
+      .nth(4)
+      .getAttribute('href'),
   ).toContain('/rss.xml');
 });
