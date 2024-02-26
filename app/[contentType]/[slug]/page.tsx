@@ -80,7 +80,6 @@ export default async function ContentPage({ params }: { params: Params }) {
   }
 
   const content = await fetchContentData(slug, contentType);
-
   if (content.draft) return notFound();
 
   if (contentType === 'works') return <WorkPage work={content} />;
