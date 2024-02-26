@@ -29,6 +29,22 @@ export type IContent = {
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
+export type ContentDataTypes = {
+  id: string;
+  contentHtml: string;
+  problem?: string;
+  techStack?: string[];
+} & Pick<
+  IContent,
+  | 'title'
+  | 'draft'
+  | 'date'
+  | 'previewImage'
+  | 'description'
+  | 'tags'
+  | 'category'
+>;
+
 /**
  * Sorts content by their dates
  * @param a {Date} - Date of post 1
@@ -99,7 +115,10 @@ export const getAllContentIds = (contentType: IContentType) => {
  * @param {string} contentType Type of content
  */
 
-export const getContentData = async (id: string, contentType: IContentType) => {
+export const getContentData = async (
+  id: string,
+  contentType: IContentType,
+): Promise<ContentDataTypes> => {
   let contentTypeDirectory: string;
   let filenames;
   switch (contentType.toLowerCase()) {
