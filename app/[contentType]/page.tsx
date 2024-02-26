@@ -17,6 +17,11 @@ type Params = {
 /** generate list page metadata */
 export function generateMetadata({ params }: { params: Params }): Metadata {
   const contentType = contentTypesMap.get(params.contentType);
+
+  if (!contentType) {
+    return notFound();
+  }
+
   return {
     title: `${contentType.title} | ${site.siteTitle}`,
     description: contentType.description,
@@ -45,7 +50,13 @@ export default function ContentListPage({ params }: { params: Params }) {
 
   const content = getContentList(contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
-  const { title, path, description } = contentTypesMap.get(contentType);
+  const contentTypeData = contentTypesMap.get(contentType);
+
+  if (!contentTypeData) {
+    return notFound();
+  }
+
+  const { title, description, path } = contentTypeData;
 
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>

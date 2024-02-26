@@ -1,6 +1,13 @@
 import { IContentType } from './content';
 
-export const contentTypesMap: Map<IContentType, any> = new Map([
+export const contentTypesMap: Map<
+  IContentType,
+  {
+    title: string;
+    description: string;
+    path: string;
+  }
+> = new Map([
   [
     'articles',
     {
