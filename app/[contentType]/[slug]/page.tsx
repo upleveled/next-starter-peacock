@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Chips, Container } from '../../../components';
 import BackButton from '../../../components/back-button';
-import { author, site } from '../../../config/index.json';
+import config from '../../../config/index.json';
 import {
   getContentData,
   getContentList,
@@ -12,6 +12,8 @@ import {
 } from '../../../utils/content';
 import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';
+
+const { site, author } = config;
 
 export async function generateMetadata({
   params,
@@ -78,6 +80,7 @@ export default async function ContentPage({ params }: { params: Params }) {
   }
 
   const content = await fetchContentData(slug, contentType);
+
   if (content.draft) return notFound();
 
   if (contentType === 'works') return <WorkPage work={content} />;
@@ -92,7 +95,7 @@ export default async function ContentPage({ params }: { params: Params }) {
           <time className="block text-accent-4 mb-8">
             {content.date.toString()}
           </time>
-          {content.previewImage && (
+          {content.previewImage! && (
             <Image
               className="pb-8 block object-cover"
               src={content.previewImage}

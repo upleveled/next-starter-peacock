@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 import { Container, Header, Testimonials, WorkItem } from '../components';
-import { author, site } from '../config/index.json';
+import config from '../config/index.json';
 import testimonials from '../config/testimonials.json';
 import { getContentList } from '../utils/content';
 
 /**
  * Index page `/index`
  */
+
+const { site, author } = config;
 
 export const metadata: Metadata = {
   title: site.siteTitle,

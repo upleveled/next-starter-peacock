@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../components';
-import { site } from '../../config/index.json';
+import config from '../../config/index.json';
 import {
   getContentList,
   getContentTypes,
@@ -13,6 +13,8 @@ import { generateRSS } from '../../utils/rss';
 type Params = {
   contentType: IContentType;
 };
+
+const { site } = config;
 
 /** generate list page metadata */
 export function generateMetadata({ params }: { params: Params }): Metadata {

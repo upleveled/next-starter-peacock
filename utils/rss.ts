@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { Feed } from 'feed';
-import { author, site } from '../config/index.json';
+import config from '../config/index.json';
 import { getContentList, IContent, sortByDate } from './content';
+
+const { site, author } = config;
 
 const { siteName, siteTitle, siteUrl } = site;
 
