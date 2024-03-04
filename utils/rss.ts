@@ -1,12 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { Feed } from 'feed';
-import config from '../config/index.json';
+import info from '../config/index.json';
 import { getContentList, IContent, sortByDate } from './content';
 
-const { site, author } = config;
-
-const { siteName, siteTitle, siteUrl } = site;
+const { siteName, siteTitle, siteUrl } = info.site;
 
 export const notesContent = getContentList('notes');
 export const articlesContent = getContentList('articles');
@@ -25,11 +23,11 @@ export function generateRSS() {
         rss: `${siteUrl}/rss.xml`,
       },
       image: `${siteUrl}/Logo.png`,
-      copyright: `${year} ${author.name}`,
+      copyright: `${year} ${info.author.name}`,
       language: 'en',
       author: {
-        name: author.name,
-        link: author.twitterHandle,
+        name: info.author.name,
+        link: info.author.twitterHandle,
       },
     });
 
@@ -44,8 +42,8 @@ export function generateRSS() {
         image: path.join(siteUrl, previewImage!),
         author: [
           {
-            name: author.name,
-            link: author.twitterHandle,
+            name: info.author.name,
+            link: info.author.twitterHandle,
           },
         ],
         date: new Date(date),

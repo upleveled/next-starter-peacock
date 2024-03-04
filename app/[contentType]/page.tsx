@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../components';
-import config from '../../config/index.json';
+import info from '../../config/index.json';
 import {
   getContentList,
   getContentTypes,
@@ -14,8 +14,6 @@ type Params = {
   contentType: IContentType;
 };
 
-const { site } = config;
-
 /** generate list page metadata */
 export function generateMetadata({ params }: { params: Params }): Metadata {
   const contentType = contentTypesMap.get(params.contentType);
@@ -25,7 +23,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   }
 
   return {
-    title: `${contentType.title} | ${site.siteTitle}`,
+    title: `${contentType.title} | ${info.site.siteTitle}`,
     description: contentType.description,
   };
 }

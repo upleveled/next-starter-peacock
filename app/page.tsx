@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Container, Header, Testimonials, WorkItem } from '../components';
-import config from '../config/index.json';
+import info from '../config/index.json';
 import testimonials from '../config/testimonials.json';
 import { getContentList } from '../utils/content';
 
@@ -8,33 +8,31 @@ import { getContentList } from '../utils/content';
  * Index page `/index`
  */
 
-const { site, author } = config;
-
 export const metadata: Metadata = {
-  title: site.siteTitle,
-  keywords: site.keywords.split(','),
-  description: site.siteDescription,
+  title: info.site.siteTitle,
+  keywords: info.site.keywords.split(','),
+  description: info.site.siteDescription,
   alternates: {
     types: {
       'application/rss+xml': [
         {
-          title: site.siteName,
-          url: `${site.siteUrl}rss.xml`,
+          title: info.site.siteName,
+          url: `${info.site.siteUrl}rss.xml`,
         },
       ],
     },
   },
   twitter: {
     card: 'summary_large_image',
-    creator: author.twitterHandle,
-    images: site.siteImage,
+    creator: info.author.twitterHandle,
+    images: info.site.siteImage,
   },
   openGraph: {
-    title: `${site.siteTitle} | ${site.siteDescription}`,
-    description: site.siteDescription,
-    url: site.siteUrl,
-    images: site.siteImage,
-    siteName: site.siteName,
+    title: `${info.site.siteTitle} | ${info.site.siteDescription}`,
+    description: info.site.siteDescription,
+    url: info.site.siteUrl,
+    images: info.site.siteImage,
+    siteName: info.site.siteName,
   },
 };
 
