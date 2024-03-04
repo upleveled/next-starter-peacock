@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { Feed } from 'feed';
-import info from '../config/index.json';
+import info from '../config/index.json' assert { type: 'json' };
 import { getContentList, IContent, sortByDate } from './content';
 
 const { siteName, siteTitle, siteUrl } = info.site;

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Chips, Container } from '../../../components';
 import BackButton from '../../../components/back-button';
-import info from '../../../config/index.json';
+import info from '../../../config/index.json' assert { type: 'json' };
 import {
   getContentData,
   getContentList,
@@ -92,10 +92,10 @@ export default async function ContentPage({ params }: { params: Params }) {
           <time className="block text-accent-4 mb-8">
             {content.date.toString()}
           </time>
-          {Boolean(content.previewImage) && (
+          {!!content.previewImage && (
             <Image
               className="pb-8 block object-cover"
-              src={content.previewImage ?? ''}
+              src={content.previewImage}
               height={550}
               width={1200}
               alt=""

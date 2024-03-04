@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../components';
-import info from '../../config/index.json';
+import info from '../../config/index.json' assert { type: 'json' };
 import {
   getContentList,
   getContentTypes,

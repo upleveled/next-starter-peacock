@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import siteConfig from '../config/index.json';
+import siteConfig from '../config/index.json' assert { type: 'json' };
 import Abstract from '../public/images/abstract.png';
 import { Container, NativeLink, Socials } from './';
 

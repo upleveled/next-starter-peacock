@@ -1,5 +1,5 @@
 import { Container } from '../../components';
-import SiteConfig from '../../config/index.json';
+import SiteConfig from '../../config/index.json' assert { type: 'json' };
 
 export const metadata = {
   title: `About Me | ${SiteConfig.site.siteName}`,
