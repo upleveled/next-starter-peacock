@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && sed -i '' 's/\"type\": \"module\"/\"type\": \"commonjs\"/' package.json",
+    "build": "if [ $(uname) = 'Darwin' ]; then next build && sed -i '' 's/\"type\": \"module\"/\"type\": \"commonjs\"/' package.json; else next build && sed -i 's/\"type\": \"module\"/\"type\": \"commonjs\"/' package.json; fi",
     "start": "next start",
     "build:rss": "tsx ./utils/rss.ts",
     "lint": "next lint"
