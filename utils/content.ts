@@ -42,7 +42,7 @@ export type IContent = {
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
-export type ContentDataType = IContentData & Pick<IContent, 'draft'>;
+export type IContentDataWithDraftType = IContentData & Pick<IContent, 'draft'>;
 
 /**
  * Sorts content by their dates
@@ -117,7 +117,7 @@ export const getAllContentIds = (contentType: IContentType) => {
 export const getContentData = async (
   id: string,
   contentType: IContentType,
-): Promise<ContentDataType> => {
+): Promise<IContentDataWithDraftType> => {
   let contentTypeDirectory: string;
   let filenames;
   switch (contentType.toLowerCase()) {
