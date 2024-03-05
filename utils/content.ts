@@ -13,6 +13,19 @@ const workDirectory = path.join(process.cwd(), 'content', 'work');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
 const articlesDirectory = path.join(process.cwd(), 'content', 'articles');
 
+export interface IContentData {
+  id: string;
+  contentHtml: string;
+  date: Date;
+  title: string;
+  previewImage?: string;
+  description?: string;
+  tags?: string[];
+  category?: string;
+  problem?: string;
+  techStack?: string[];
+}
+
 export type IContent = {
   title: string;
   slug: string;
@@ -28,6 +41,8 @@ export type IContent = {
 };
 
 export type IContentType = 'articles' | 'notes' | 'works';
+
+export type IContentDataWithDraftType = IContentData & Pick<IContent, 'draft'>;
 
 /**
  * Sorts content by their dates
@@ -99,7 +114,10 @@ export const getAllContentIds = (contentType: IContentType) => {
  * @param {string} contentType Type of content
  */
 
-export const getContentData = async (id: string, contentType: IContentType) => {
+export const getContentData = async (
+  id: string,
+  contentType: IContentType,
+): Promise<IContentDataWithDraftType> => {
   let contentTypeDirectory: string;
   let filenames;
   switch (contentType.toLowerCase()) {

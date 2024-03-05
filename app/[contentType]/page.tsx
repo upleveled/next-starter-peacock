@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../components';
-import { site } from '../../config/index.json';
+import info from '../../config/index.json' assert { type: 'json' };
 import {
   getContentList,
   getContentTypes,
@@ -17,8 +17,13 @@ type Params = {
 /** generate list page metadata */
 export function generateMetadata({ params }: { params: Params }): Metadata {
   const contentType = contentTypesMap.get(params.contentType);
+
+  if (!contentType) {
+    notFound();
+  }
+
   return {
-    title: `${contentType.title} | ${site.siteTitle}`,
+    title: `${contentType.title} | ${info.site.siteTitle}`,
     description: contentType.description,
   };
 }
@@ -40,12 +45,18 @@ export default function ContentListPage({ params }: { params: Params }) {
 
   // redirect to 404 with wrong contentType
   if (!contentTypesMap.has(contentType)) {
-    return notFound();
+    notFound();
   }
 
   const content = getContentList(contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
-  const { title, path, description } = contentTypesMap.get(contentType);
+  const contentTypeData = contentTypesMap.get(contentType);
+
+  if (!contentTypeData) {
+    notFound();
+  }
+
+  const { title, description, path } = contentTypeData;
 
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>

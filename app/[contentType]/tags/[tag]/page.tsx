@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../../../components';
 import { getContentWithTag, IContentType } from '../../../../utils/content';
 import { contentTypesMap } from '../../../../utils/content-types';
@@ -22,7 +23,13 @@ export default function ContentListPage({
 
   const content = getContentWithTag(tag, contentType);
   const isNotes = contentType.toLowerCase() === 'notes';
-  const { title, path, description } = contentTypesMap.get(contentType);
+  const contentTypeData = contentTypesMap.get(contentType);
+
+  if (!contentTypeData) {
+    notFound();
+  }
+
+  const { title, description, path } = contentTypeData;
 
   return (
     <Container width={isNotes ? 'narrow' : 'default'}>

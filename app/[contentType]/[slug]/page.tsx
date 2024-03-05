@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Chips, Container } from '../../../components';
 import BackButton from '../../../components/back-button';
-import { author, site } from '../../../config/index.json';
+import info from '../../../config/index.json' assert { type: 'json' };
 import {
   getContentData,
   getContentList,
   getContentTypes,
+  IContentData,
   IContentType,
 } from '../../../utils/content';
 import { contentTypesMap } from '../../../utils/content-types';
@@ -23,19 +24,19 @@ export async function generateMetadata({
     params.contentType,
   );
   return {
-    title: `${title} | ${site.siteTitle}`,
-    description: description ?? site.siteDescription,
+    title: `${title} | ${info.site.siteTitle}`,
+    description: description ?? info.site.siteDescription,
     openGraph: {
-      title: `${title} | ${site.siteName}`,
-      description: description ?? site.siteDescription,
-      url: site.siteUrl,
-      images: previewImage ?? site.siteImage,
-      siteName: site.siteName,
+      title: `${title} | ${info.site.siteName}`,
+      description: description ?? info.site.siteDescription,
+      url: info.site.siteUrl,
+      images: previewImage ?? info.site.siteImage,
+      siteName: info.site.siteName,
     },
     twitter: {
       card: 'summary_large_image',
-      creator: author.twitterHandle,
-      images: previewImage ?? site.siteImage,
+      creator: info.author.twitterHandle,
+      images: previewImage ?? info.site.siteImage,
     },
   };
 }
@@ -74,11 +75,11 @@ export default async function ContentPage({ params }: { params: Params }) {
   const { slug, contentType } = params;
 
   if (!contentTypesMap.has(contentType)) {
-    return notFound();
+    notFound();
   }
 
   const content = await fetchContentData(slug, contentType);
-  if (content.draft) return notFound();
+  if (content.draft) notFound();
 
   if (contentType === 'works') return <WorkPage work={content} />;
 
@@ -92,7 +93,7 @@ export default async function ContentPage({ params }: { params: Params }) {
           <time className="block text-accent-4 mb-8">
             {content.date.toString()}
           </time>
-          {content.previewImage && (
+          {!!content.previewImage && (
             <Image
               className="pb-8 block object-cover"
               src={content.previewImage}
@@ -173,17 +174,4 @@ function TechStack({ techStack }: { techStack: string[] }) {
       </ul>
     </li>
   );
-}
-
-export interface IContentData {
-  id: string;
-  contentHtml: string;
-  date: Date;
-  title: string;
-  previewImage?: string;
-  description?: string;
-  tags?: string[];
-  category?: string;
-  problem?: string;
-  techStack?: string[];
 }

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 import { Loader, Moon, Rss, Sun } from 'react-feather';
 import { Logo } from '../';
-import SiteConfig from '../../config/index.json';
+import SiteConfig from '../../config/index.json' assert { type: 'json' };
 import { Container } from '../container';
 import { Hamburger } from '../hamburger';
 
