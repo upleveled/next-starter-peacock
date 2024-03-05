@@ -26,7 +26,7 @@ export default function ContentListPage({
   const contentTypeData = contentTypesMap.get(contentType);
 
   if (!contentTypeData) {
-    return notFound();
+    notFound();
   }
 
   const { title, description, path } = contentTypeData;

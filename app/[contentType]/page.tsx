@@ -19,7 +19,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const contentType = contentTypesMap.get(params.contentType);
 
   if (!contentType) {
-    return notFound();
+    notFound();
   }
 
   return {
@@ -45,7 +45,7 @@ export default function ContentListPage({ params }: { params: Params }) {
 
   // redirect to 404 with wrong contentType
   if (!contentTypesMap.has(contentType)) {
-    return notFound();
+    notFound();
   }
 
   const content = getContentList(contentType);
@@ -53,7 +53,7 @@ export default function ContentListPage({ params }: { params: Params }) {
   const contentTypeData = contentTypesMap.get(contentType);
 
   if (!contentTypeData) {
-    return notFound();
+    notFound();
   }
 
   const { title, description, path } = contentTypeData;

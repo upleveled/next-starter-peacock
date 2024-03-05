@@ -74,11 +74,11 @@ export default async function ContentPage({ params }: { params: Params }) {
   const { slug, contentType } = params;
 
   if (!contentTypesMap.has(contentType)) {
-    return notFound();
+    notFound();
   }
 
   const content = await fetchContentData(slug, contentType);
-  if (content.draft) return notFound();
+  if (content.draft) notFound();
 
   if (contentType === 'works') return <WorkPage work={content} />;
 
