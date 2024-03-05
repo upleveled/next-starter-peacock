@@ -117,7 +117,7 @@ export const getAllContentIds = (contentType: IContentType) => {
 export const getContentData = async (
   id: string,
   contentType: IContentType,
-): Promise<ContentType> => {
+): Promise<ContentDataType> => {
   let contentTypeDirectory: string;
   let filenames;
   switch (contentType.toLowerCase()) {
