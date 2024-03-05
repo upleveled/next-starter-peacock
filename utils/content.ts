@@ -7,6 +7,7 @@ import html from 'remark-html';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
+import { IContentData } from '../app/[contentType]/[slug]/page';
 import { contentTypesMap } from './content-types';
 
 const workDirectory = path.join(process.cwd(), 'content', 'work');
@@ -29,21 +30,7 @@ export type IContent = {
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
-export type ContentDataTypes = {
-  id: string;
-  contentHtml: string;
-  problem?: string;
-  techStack?: string[];
-} & Pick<
-  IContent,
-  | 'title'
-  | 'draft'
-  | 'date'
-  | 'previewImage'
-  | 'description'
-  | 'tags'
-  | 'category'
->;
+export type ContentType = IContentData & Pick<IContent, 'draft'>;
 
 /**
  * Sorts content by their dates
@@ -118,7 +105,7 @@ export const getAllContentIds = (contentType: IContentType) => {
 export const getContentData = async (
   id: string,
   contentType: IContentType,
-): Promise<ContentDataTypes> => {
+): Promise<ContentType> => {
   let contentTypeDirectory: string;
   let filenames;
   switch (contentType.toLowerCase()) {
