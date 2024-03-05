@@ -8,6 +8,7 @@ import {
   getContentData,
   getContentList,
   getContentTypes,
+  IContentData,
   IContentType,
 } from '../../../utils/content';
 import { contentTypesMap } from '../../../utils/content-types';
@@ -173,17 +174,4 @@ function TechStack({ techStack }: { techStack: string[] }) {
       </ul>
     </li>
   );
-}
-
-export interface IContentData {
-  id: string;
-  contentHtml: string;
-  date: Date;
-  title: string;
-  previewImage?: string;
-  description?: string;
-  tags?: string[];
-  category?: string;
-  problem?: string;
-  techStack?: string[];
 }

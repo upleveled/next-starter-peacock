@@ -7,12 +7,24 @@ import html from 'remark-html';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
-import { IContentData } from '../app/[contentType]/[slug]/page';
 import { contentTypesMap } from './content-types';
 
 const workDirectory = path.join(process.cwd(), 'content', 'work');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
 const articlesDirectory = path.join(process.cwd(), 'content', 'articles');
+
+export interface IContentData {
+  id: string;
+  contentHtml: string;
+  date: Date;
+  title: string;
+  previewImage?: string;
+  description?: string;
+  tags?: string[];
+  category?: string;
+  problem?: string;
+  techStack?: string[];
+}
 
 export type IContent = {
   title: string;
@@ -30,7 +42,7 @@ export type IContent = {
 
 export type IContentType = 'articles' | 'notes' | 'works';
 
-export type ContentType = IContentData & Pick<IContent, 'draft'>;
+export type ContentDataType = IContentData & Pick<IContent, 'draft'>;
 
 /**
  * Sorts content by their dates
