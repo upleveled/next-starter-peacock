@@ -19,10 +19,9 @@ type Params = {
 };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { slug, contentType } = await params;
   const { title, previewImage, description } = await getContentData(
-    slug,
-    contentType,
+    (await params).slug,
+    (await params).contentType,
   );
   return {
     title: `${title} | ${info.site.siteTitle}`,
