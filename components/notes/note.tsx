@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 import { Calendar } from 'react-feather';
 import type { IContent } from '../../utils/content';
 

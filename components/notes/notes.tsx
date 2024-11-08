@@ -1,4 +1,3 @@
-import React from 'react';
 import type { IContent } from '../../utils/content';
 import { Note } from './note';
 
