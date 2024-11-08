@@ -13,16 +13,16 @@ import { contentTypesMap } from '../../../../utils/content-types';
 /**
  * Index page `/index`
  */
-export default function ContentListPage({
+export default async function ContentListPage({
   params,
 }: {
-  params: {
+  params: Promise<{
     contentType: IContentType;
     tag: IContentType;
-  };
+  }>;
 }) {
-  const contentType = params.contentType;
-  const tag = params.tag;
+  const contentType = (await params).contentType;
+  const tag = (await params).tag;
 
   const content = getContentWithTag(tag, contentType);
   const isNotes = contentType.toLowerCase() === 'notes';

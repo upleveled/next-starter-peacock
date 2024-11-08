@@ -14,14 +14,14 @@ import {
 import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
+type Params = {
+  params: Promise<{ slug: string; contentType: IContentType }>;
+};
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { title, previewImage, description } = await getContentData(
-    params.slug,
-    params.contentType,
+    (await params).slug,
+    (await params).contentType,
   );
   return {
     title: `${title} | ${info.site.siteTitle}`,
@@ -66,13 +66,8 @@ async function fetchContentData(slug: string, contentType: IContentType) {
   return await getContentData(slug, contentType);
 }
 
-type Params = {
-  slug: string;
-  contentType: IContentType;
-};
-
-export default async function ContentPage({ params }: { params: Params }) {
-  const { slug, contentType } = params;
+export default async function ContentPage({ params }: Params) {
+  const { slug, contentType } = await params;
 
   if (!contentTypesMap.has(contentType)) {
     notFound();
