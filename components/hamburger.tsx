@@ -1,4 +1,4 @@
-import { HTMLAttributes, useContext } from 'react';
+import { type HTMLAttributes, useContext } from 'react';
 import { cn } from '../utils/cn';
 import { menuContext } from './MenuContext';
 

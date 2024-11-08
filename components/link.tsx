@@ -1,4 +1,4 @@
-import { AllHTMLAttributes } from 'react';
+import type { AllHTMLAttributes } from 'react';
 import { cn } from '../utils/cn';
 
 export function NativeLink({

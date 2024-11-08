@@ -1,4 +1,4 @@
-import { IContentType } from './content';
+import type { IContentType } from './content';
 
 export const contentTypesMap: Map<
   IContentType,

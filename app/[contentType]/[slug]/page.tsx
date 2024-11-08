@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Chips, Container } from '../../../components';
@@ -8,8 +8,8 @@ import {
   getContentData,
   getContentList,
   getContentTypes,
-  IContentData,
-  IContentType,
+  type IContentData,
+  type IContentType,
 } from '../../../utils/content';
 import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';

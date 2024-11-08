@@ -1,5 +1,5 @@
-import { HTMLAttributes } from 'react';
-import { IContent, IContentType } from '../utils/content';
+import type { HTMLAttributes } from 'react';
+import type { IContent, IContentType } from '../utils/content';
 import { Cards, WorkItem } from './';
 
 interface ContentListProps extends HTMLAttributes<HTMLElement> {

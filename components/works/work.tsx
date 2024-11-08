@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'react-feather';
 import placeholderImg from '../../public/images/placeholder.jpg';
 import { cn } from '../../utils/cn';
-import { IContent } from '../../utils/content';
+import type { IContent } from '../../utils/content';
 
 // TODO: use some type of hash function to generate the colors
 const colorsLookup = {

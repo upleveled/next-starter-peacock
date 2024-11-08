@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React from 'react';
 import { ChevronLeft } from 'react-feather';
 
 export default function BackButton() {

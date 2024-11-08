@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../../../components';
-import { getContentWithTag, IContentType } from '../../../../utils/content';
+import {
+  getContentWithTag,
+  type IContentType,
+} from '../../../../utils/content';
 import { contentTypesMap } from '../../../../utils/content-types';
 
 // TODO: I need to rethink the tags page. I don't think I want to have a page for each tag.

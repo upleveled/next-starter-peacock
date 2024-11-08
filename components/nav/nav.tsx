@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { Loader, Moon, Rss, Sun } from 'react-feather';
 import { Logo } from '../';
 import SiteConfig from '../../config/index.json' assert { type: 'json' };
