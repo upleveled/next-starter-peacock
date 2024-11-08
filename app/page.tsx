@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Container, Header, Testimonials, WorkItem } from '../components';
 import info from '../config/index.json' assert { type: 'json' };
 import testimonials from '../config/testimonials.json' assert { type: 'json' };

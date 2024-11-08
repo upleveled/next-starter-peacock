@@ -1,5 +1,5 @@
 import React from 'react';
-import { IContent } from '../../utils/content';
+import type { IContent } from '../../utils/content';
 import { Note } from './note';
 
 interface INotes {

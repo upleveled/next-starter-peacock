@@ -1,11 +1,11 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, ContentList } from '../../components';
 import info from '../../config/index.json' assert { type: 'json' };
 import {
   getContentList,
   getContentTypes,
-  IContentType,
+  type IContentType,
 } from '../../utils/content';
 import { contentTypesMap } from '../../utils/content-types';
 import { generateRSS } from '../../utils/rss';
