@@ -10,13 +10,17 @@ import {
 import { contentTypesMap } from '../../utils/content-types';
 import { generateRSS } from '../../utils/rss';
 
-type Params = {
+type Params = Promise<{
   contentType: IContentType;
-};
+}>;
 
 /** generate list page metadata */
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const contentType = contentTypesMap.get(params.contentType);
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const contentType = contentTypesMap.get((await params).contentType);
 
   if (!contentType) {
     notFound();
@@ -40,8 +44,8 @@ export function generateStaticParams() {
 /**
  * Index page `/index`
  */
-export default function ContentListPage({ params }: { params: Params }) {
-  const contentType = params.contentType;
+export default async function ContentListPage({ params }: { params: Params }) {
+  const contentType = (await params).contentType;
 
   // redirect to 404 with wrong contentType
   if (!contentTypesMap.has(contentType)) {
