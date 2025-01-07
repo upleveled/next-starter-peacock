@@ -3,6 +3,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import remarkHtml from 'remark-html';
 import remarkParse from 'remark-parse';
@@ -42,8 +43,9 @@ export default async function ContentPage({ params }: Params) {
 
   const processedContent = await unified()
     .use(remarkParse)
+    .use(remarkHtml, { sanitize: false })
     .use(remarkGfm)
-    .use(remarkHtml)
+    .use(rehypeHighlight)
     .process(content);
 
   const contentHtml = processedContent.toString();
