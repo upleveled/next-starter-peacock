@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     (await params).contentType,
   );
   return {
+    metadataBase: new URL('http://localhost:3000'),
     title: `${title} | ${info.site.siteTitle}`,
     description: description ?? info.site.siteDescription,
     openGraph: {
