@@ -19,9 +19,31 @@ type Params = {
   params: Promise<{ slug: string; contentType: IContentType }>;
 };
 
+const contentTypes = ['articles', 'notes', 'works'];
+
+function getMarkdownContent(contentType: IContentType, slug: string) {
+  if (!contentTypes.includes(contentType)) {
+    notFound();
+  }
+
+  const filePath = path.join(
+    process.cwd(),
+    'content',
+    contentType,
+    `${slug}.md`,
+  );
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
+
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { data, content } = matter(fileContent);
+
+  return { data, content };
+}
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug, contentType } = await params;
-  const contentTypes = ['articles', 'notes', 'works'];
   if (!contentTypes.includes(contentType)) {
     notFound();
   }
@@ -35,8 +57,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     notFound();
   }
 
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { data } = matter(fileContent);
+  const { data } = getMarkdownContent(contentType, slug);
+
   return {
     title: `${data.title} | ${info.site.siteTitle}`,
     description: data.description ?? info.site.siteDescription,
@@ -58,22 +80,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function ContentPage({ params }: Params) {
   const { slug, contentType } = await params;
 
-  const contentTypes = ['articles', 'notes', 'works'];
-  if (!contentTypes.includes(contentType)) {
-    notFound();
-  }
-
-  const filePath = path.join(
-    path.join(process.cwd(), 'content'),
-    contentType,
-    `${slug}.md`,
-  );
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
-
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { data, content } = matter(fileContent);
+  const { data, content } = getMarkdownContent(contentType, slug);
 
   if (data.draft) {
     notFound();
