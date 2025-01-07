@@ -1,10 +1,10 @@
 ---
-title: "Getting started with React Nativ"
-date: "2021-01-01"
-slug: "getting-started-with-react-native"
-description: "Next.js has two forms of pre-rendering: Static Generation and Server-side Rendering. The difference is in when it generates the HTML for a page."
-previewImage: "/images/notes/markdown_1.jpg"
-category: "til"
+title: 'Getting started with React Native'
+date: '2021-01-01'
+slug: 'getting-started-with-react-native'
+description: 'Next.js has two forms of pre-rendering: Static Generation and Server-side Rendering. The difference is in when it generates the HTML for a page.'
+previewImage: '/images/notes/markdown_1.jpg'
+category: 'til'
 tags:
   - css
   - html

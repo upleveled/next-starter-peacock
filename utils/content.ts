@@ -1,15 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import rehypeHighlight from 'rehype-highlight';
-import gfm from 'remark-gfm';
-import html from 'remark-html';
-import remarkParse from 'remark-parse';
-import { unified } from 'unified';
 import { v4 as uuid } from 'uuid';
 import { contentTypesMap } from './content-types';
 
-const workDirectory = path.join(process.cwd(), 'content', 'work');
+const workDirectory = path.join(process.cwd(), 'content', 'works');
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
 const articlesDirectory = path.join(process.cwd(), 'content', 'articles');
 
@@ -106,78 +101,6 @@ export const getAllContentIds = (contentType: IContentType) => {
       },
     };
   });
-};
-
-/**
- * Get data for a given post id
- * @param {string} id ID of the post being passed
- * @param {string} contentType Type of content
- */
-
-export const getContentData = async (
-  id: string,
-  contentType: IContentType,
-): Promise<IContentDataWithDraftType> => {
-  let contentTypeDirectory: string;
-  let filenames;
-  switch (contentType.toLowerCase()) {
-    case 'articles':
-      filenames = fs.readdirSync(articlesDirectory);
-      contentTypeDirectory = articlesDirectory;
-      break;
-
-    case 'notes':
-      filenames = fs.readdirSync(notesDirectory);
-      contentTypeDirectory = notesDirectory;
-      break;
-
-    case 'works':
-      filenames = fs.readdirSync(workDirectory);
-      contentTypeDirectory = workDirectory;
-      break;
-
-    default:
-      throw new Error('You have to provide a content type');
-  }
-
-  // loop through all the content types and compare the slug to get the filename
-  const match = filenames.filter((filename) => {
-    const filePath = path.join(contentTypeDirectory, filename);
-
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const matterResult = matter(fileContent);
-    const { slug } = matterResult.data;
-    return slug === id;
-  });
-
-  // use the returned path to get the fullpath and read the file content
-  const fullPath = path.join(contentTypeDirectory, match[0]!);
-  // const fullPath = path.join(contentTypeDirectory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf-8');
-
-  const matterResult = matter(fileContents);
-  const processedContent = await unified()
-    .use(remarkParse)
-    .use(html, { sanitize: false })
-    .use(gfm)
-    .use(rehypeHighlight)
-    .process(matterResult.content);
-
-  const contentHtml = processedContent.toString();
-
-  return {
-    id,
-    contentHtml,
-    title: matterResult.data.title,
-    draft: matterResult.data.draft || false,
-    date: matterResult.data.date,
-    previewImage: matterResult.data.previewImage || '',
-    description: matterResult.data.description || '',
-    tags: matterResult.data.tags || [],
-    category: matterResult.data.category || '',
-    problem: matterResult.data.problem || '',
-    techStack: matterResult.data.techStack || [],
-  };
 };
 
 /**

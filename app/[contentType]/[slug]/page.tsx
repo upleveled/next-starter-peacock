@@ -1,98 +1,79 @@
-import type { Metadata } from 'next';
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import remarkGfm from 'remark-gfm';
+import remarkHtml from 'remark-html';
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
 import { Chips, Container } from '../../../components';
 import BackButton from '../../../components/back-button';
-import info from '../../../config/index.json' assert { type: 'json' };
-import {
-  getContentData,
-  getContentList,
-  getContentTypes,
-  type IContentData,
-  type IContentType,
-} from '../../../utils/content';
-import { contentTypesMap } from '../../../utils/content-types';
+import type { IContentData, IContentType } from '../../../utils/content';
 import Content from './content';
 
 type Params = {
   params: Promise<{ slug: string; contentType: IContentType }>;
 };
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { title, previewImage, description } = await getContentData(
-    (await params).slug,
-    (await params).contentType,
-  );
-  return {
-    metadataBase: new URL('http://localhost:3000'),
-    title: `${title} | ${info.site.siteTitle}`,
-    description: description ?? info.site.siteDescription,
-    openGraph: {
-      title: `${title} | ${info.site.siteName}`,
-      description: description ?? info.site.siteDescription,
-      url: info.site.siteUrl,
-      images: previewImage ?? info.site.siteImage,
-      siteName: info.site.siteName,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      creator: info.author.twitterHandle,
-      images: previewImage ?? info.site.siteImage,
-    },
-  };
-}
-
-/**
- * statically generate all content pages
- */
-export function generateStaticParams() {
-  const contentTypes = getContentTypes();
-
-  return contentTypes.flatMap((contentType) => {
-    const contentList = getContentList(contentType);
-    return contentList.map(({ slug }) => {
-      return {
-        contentType,
-        slug,
-      };
-    });
-  });
-}
-
-/**
- *  Renders articles markdown posts
- */
-
-async function fetchContentData(slug: string, contentType: IContentType) {
-  return await getContentData(slug, contentType);
-}
-
 export default async function ContentPage({ params }: Params) {
   const { slug, contentType } = await params;
 
-  if (!contentTypesMap.has(contentType)) {
+  const contentTypes = ['articles', 'notes', 'works'];
+  if (!contentTypes.includes(contentType)) {
     notFound();
   }
 
-  const content = await fetchContentData(slug, contentType);
-  if (content.draft) notFound();
+  const filePath = path.join(
+    path.join(process.cwd(), 'content'),
+    contentType,
+    `${slug}.md`,
+  );
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
 
-  if (contentType === 'works') return <WorkPage work={content} />;
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { data, content } = matter(fileContent);
+
+  if (data.draft) {
+    notFound();
+  }
+
+  const processedContent = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkHtml)
+    .process(content);
+
+  const contentHtml = processedContent.toString();
+
+  if (contentType === 'works') {
+    return (
+      <WorkPage
+        work={{
+          ...data,
+          contentHtml,
+          id: data.id,
+          date: data.date,
+          title: data.title,
+        }}
+      />
+    );
+  }
 
   return (
     <Container width="narrow">
       <header>
         <section className="pt-16">
           <h1 className="my-0 font-bold font-display mb-2 text-2xl/normal md:text-4xl max-w-xl">
-            {content.title}
+            {data.title}
           </h1>
-          <time className="block text-accent-4 mb-8">
-            {content.date.toString()}
-          </time>
-          {!!content.previewImage && (
+          <time className="block text-accent-4 mb-8">{data.date}</time>
+          {!!data.previewImage && (
             <Image
               className="pb-8 block object-cover"
-              src={content.previewImage}
+              src={data.previewImage}
               height={550}
               width={1200}
               alt=""
@@ -101,8 +82,8 @@ export default async function ContentPage({ params }: Params) {
         </section>
       </header>
 
-      <Content html={content.contentHtml} />
-      {content.tags && <Chips items={content.tags} />}
+      <Content html={contentHtml} />
+      {data.tags && <Chips items={data.tags} />}
     </Container>
   );
 }
@@ -123,8 +104,8 @@ function WorkPage({ work }: { work: IContentData }) {
         <ul>
           <TechStack techStack={work.techStack ?? []} />
           <MetadataListItem item="Date" value={work.date.toString()} />
-          {Boolean(work.problem) && (
-            <MetadataListItem item="Problem" value={work.problem ?? ''} />
+          {work.problem && (
+            <MetadataListItem item="Problem" value={work.problem} />
           )}
         </ul>
       </section>

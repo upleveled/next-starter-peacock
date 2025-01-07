@@ -1,10 +1,10 @@
 ---
 title: The Evolution of AI in Web Development
-date: "2023-01-03"
-slug: "evolution-of-ai"
-previewImage: "/images/articles/article-preview.png"
+date: '2023-01-03'
+slug: 'evolution-of-ai'
+previewImage: '/images/articles/article-preview.png'
 draft: true
-description: "Aarav Mehta delves into the transformative role of Artificial Intelligence in the realm of web development. He examines how AI-driven technologies have begun to automate tasks such as code generation, user experience design, and even content creation."
+description: 'Aarav Mehta delves into the transformative role of Artificial Intelligence in the realm of web development. He examines how AI-driven technologies have begun to automate tasks such as code generation, user experience design, and even content creation.'
 tags:
   - css
 ---
@@ -38,4 +38,3 @@ However, the integration of AI in web development is not without challenges. Con
 ## Conclusion
 
 The evolution of AI in web development is a journey towards smarter, more efficient, and user-centric web experiences. As AI technologies continue to advance, they promise to further transform the web development landscape, making it more dynamic, accessible, and aligned with user needs. For developers and businesses alike, embracing AI in web development is not just an option but a necessity to stay ahead in the digital arena.
-
