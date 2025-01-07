@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import rehypeHighlight from 'rehype-highlight';
@@ -10,12 +11,49 @@ import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { Chips, Container } from '../../../components';
 import BackButton from '../../../components/back-button';
+import info from '../../../config/index.json' assert { type: 'json' };
 import type { IContentData, IContentType } from '../../../utils/content';
 import Content from './content';
 
 type Params = {
   params: Promise<{ slug: string; contentType: IContentType }>;
 };
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug, contentType } = await params;
+  const contentTypes = ['articles', 'notes', 'works'];
+  if (!contentTypes.includes(contentType)) {
+    notFound();
+  }
+
+  const filePath = path.join(
+    path.join(process.cwd(), 'content'),
+    contentType,
+    `${slug}.md`,
+  );
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
+
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { data } = matter(fileContent);
+  return {
+    title: `${data.title} | ${info.site.siteTitle}`,
+    description: data.description ?? info.site.siteDescription,
+    openGraph: {
+      title: `${data.title} | ${info.site.siteName}`,
+      description: data.description ?? info.site.siteDescription,
+      url: info.site.siteUrl,
+      images: data.previewImage ?? info.site.siteImage,
+      siteName: info.site.siteName,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      creator: info.author.twitterHandle,
+      images: data.previewImage ?? info.site.siteImage,
+    },
+  };
+}
 
 export default async function ContentPage({ params }: Params) {
   const { slug, contentType } = await params;
