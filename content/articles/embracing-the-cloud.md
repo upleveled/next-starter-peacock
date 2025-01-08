@@ -15,9 +15,9 @@ Serverless computing—often misunderstood as a misnomer—does not eliminate se
 ## Why Serverless?
 
 The adoption of serverless can lead to significant cost savings, especially for applications with variable traffic, due to its pay-as-you-go pricing model. It simplifies operations by eliminating the need for infrastructure provisioning and maintenance. For startups and enterprises alike, this means a sharper focus on product development rather than operational complexities.
-
+ 
 ### Transitioning to Serverless
-
+ 
 Transitioning to serverless is not an overnight process; it requires meticulous planning and an iterative approach. Start by identifying the components of your application that can be isolated as functions. This could be anything from a user authentication process to a scheduled task that generates reports.
 
 Cloud services like AWS Lambda, Azure Functions, and Google Cloud Functions offer excellent starting points. These platforms allow you to deploy code that executes in response to events, such as HTTP requests, database changes, or queue processing.
