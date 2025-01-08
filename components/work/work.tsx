@@ -18,7 +18,7 @@ export function WorkItem({ work, grid }: { work: IContent; grid?: boolean }) {
   const { title, slug, description } = work;
   return (
     <Link
-      href={`/works/${slug}`}
+      href={`/work/${slug}`}
       className={cn(
         'group rounded-xl select-none no-underline flex flex-col lg:py-10 w-full md:flex-row transition-transform hover:cursor-pointer hover:scale-[102%] active:scale-95',
         colorsLookup[slug as keyof typeof colorsLookup],
@@ -54,7 +54,7 @@ function WorkGridItem({ work }: { work: IContent }) {
 
   return (
     <Link
-      href={`/works/${slug}`}
+      href={`/work/${slug}`}
       className="group rounded-md no-underline select-none transition-transform hover:cursor-pointer hover:scale-[102%] bg-accent-8 w-full lg:w-[30%] active:scale-95"
     >
       <section>

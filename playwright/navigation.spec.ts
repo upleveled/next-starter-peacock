@@ -2,19 +2,19 @@ import { expect, test } from '@playwright/test';
 
 test('Navigate and check content', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('link', { name: 'Works' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Work' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Articles' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Notes' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'About' })).toBeVisible();
   await expect(
-    page.locator('div:has-text("WorksArticlesNotesAbout") a').nth(4),
+    page.locator('div:has-text("WorkArticlesNotesAbout") a').nth(4),
   ).toBeVisible();
   await expect(page.locator('h1')).toContainText('Senior Software Engineer');
 
-  await page.getByRole('link', { name: 'Works' }).click();
-  await page.waitForURL('/works');
-  await expect(page).toHaveTitle('Selected Works | NextJS Starter Peacock');
-  await expect(page.locator('h1')).toContainText('Selected Works');
+  await page.getByRole('link', { name: 'Work' }).click();
+  await page.waitForURL('/work');
+  await expect(page).toHaveTitle('Selected Work | NextJS Starter Peacock');
+  await expect(page.locator('h1')).toContainText('Selected Work');
 
   await page.getByRole('link', { name: 'Articles' }).click();
   await page.waitForURL('/articles');
@@ -32,7 +32,7 @@ test('Navigate and check content', async ({ page }) => {
   await expect(page.getByRole('heading')).toContainText('About Me 🧘🏾‍♂️');
   await expect(
     await page
-      .locator('div:has-text("WorksArticlesNotesAbout") a')
+      .locator('div:has-text("WorkArticlesNotesAbout") a')
       .nth(4)
       .getAttribute('href'),
   ).toContain('/rss.xml');

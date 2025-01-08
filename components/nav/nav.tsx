@@ -42,7 +42,7 @@ export function Nav() {
             )}
 
             <nav className="hidden list-none md:flex md:items-center">
-              <NavItem title="Works" href="/works" />
+              <NavItem title="Work" href="/work" />
               <NavItem title="Articles" href="/articles" />
               <NavItem title="Notes" href="/notes" />
               <NavItem title="About" href="/about" />

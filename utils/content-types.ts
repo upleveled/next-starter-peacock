@@ -27,12 +27,12 @@ export const contentTypesMap: Map<
     },
   ],
   [
-    'works',
+    'work',
     {
-      title: 'Selected Works',
+      title: 'Selected Work',
       description:
-        "Selected works I'm proud of, ranging from Software Engineering and Product Design.",
-      path: 'works',
+        "Selected work I'm proud of, ranging from Software Engineering and Product Design.",
+      path: 'work',
     },
   ],
 ]);
