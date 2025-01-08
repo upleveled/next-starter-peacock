@@ -45,11 +45,11 @@ export function MobileNav() {
 
               <li className="text-center mb-4">
                 <Link
-                  href="/works"
+                  href="/work"
                   className="text-lg"
                   onClick={() => toggleMenuOpen()}
                 >
-                  Works
+                  Work
                 </Link>
               </li>
 

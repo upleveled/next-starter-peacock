@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 const Index = () => {
-  const content = getContentList('works').filter((work) => work.selectedWork);
+  const content = getContentList('work').filter((work) => work.selectedWork);
 
   return (
     <div>
