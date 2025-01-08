@@ -5,8 +5,7 @@ import type { IContent } from '../../utils/content';
 export function Note({ date, title, slug, basePath }: IContent) {
   return (
     <Link
-      href={`/${basePath}/[id]`}
-      as={`/${basePath}/${slug}`}
+      href={`/${basePath}/${slug}`}
       className="cursor-pointer no-underline hover:underline"
     >
       <article className="flex flex-col mb-4 sm:mb-0 sm:flex-row sm:items-center">
