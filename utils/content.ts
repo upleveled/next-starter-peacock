@@ -143,10 +143,11 @@ export const getContentData = async (
   // loop through all the content types and compare the slug to get the filename
   const match = filenames.filter((filename) => {
     const filePath = path.join(contentTypeDirectory, filename);
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
 
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
     const matterResult = matter(fileContent);
     const { slug } = matterResult.data;
+
     return slug === id;
   });
 
