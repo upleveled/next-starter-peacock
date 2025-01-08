@@ -23,7 +23,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     (await params).slug,
     (await params).contentType,
   );
-
   return {
     title: `${title} | ${info.site.siteTitle}`,
     description: description ?? info.site.siteDescription,
@@ -71,7 +70,7 @@ export default async function ContentPage({ params }: Params) {
   const { slug, contentType } = await params;
 
   if (!contentTypesMap.has(contentType)) {
-    return notFound();
+    notFound();
   }
 
   const content = await fetchContentData(slug, contentType);
@@ -86,7 +85,9 @@ export default async function ContentPage({ params }: Params) {
           <h1 className="my-0 font-bold font-display mb-2 text-2xl/normal md:text-4xl max-w-xl">
             {content.title}
           </h1>
-          <time className="block text-accent-4 mb-8">{content.date}</time>
+          <time className="block text-accent-4 mb-8">
+            {content.date.toString()}
+          </time>
           {!!content.previewImage && (
             <Image
               className="pb-8 block object-cover"
