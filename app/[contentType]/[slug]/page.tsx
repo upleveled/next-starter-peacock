@@ -14,11 +14,11 @@ import {
 import { contentTypesMap } from '../../../utils/content-types';
 import Content from './content';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
+type Params = {
+  params: Promise<{ slug: string; contentType: IContentType }>;
+};
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { title, previewImage, description } = await getContentData(
     (await params).slug,
     (await params).contentType,
@@ -67,20 +67,15 @@ async function fetchContentData(slug: string, contentType: IContentType) {
   return await getContentData(slug, contentType);
 }
 
-type Params = {
-  slug: string;
-  contentType: IContentType;
-};
-
-export default async function ContentPage({ params }: { params: Params }) {
-  const { slug, contentType } = params;
+export default async function ContentPage({ params }: Params) {
+  const { slug, contentType } = await params;
 
   if (!contentTypesMap.has(contentType)) {
     return notFound();
   }
 
   const content = await fetchContentData(slug, contentType);
-  if (content.draft) return notFound();
+  if (content.draft) notFound();
 
   if (contentType === 'works') return <WorkPage work={content} />;
 
@@ -92,7 +87,7 @@ export default async function ContentPage({ params }: { params: Params }) {
             {content.title}
           </h1>
           <time className="block text-accent-4 mb-8">{content.date}</time>
-          {content.previewImage && (
+          {!!content.previewImage && (
             <Image
               className="pb-8 block object-cover"
               src={content.previewImage}
@@ -126,7 +121,7 @@ function WorkPage({ work }: { work: IContentData }) {
         <ul>
           <TechStack techStack={work.techStack ?? []} />
           <MetadataListItem item="Date" value={work.date.toString()} />
-          {work.problem && (
+          {Boolean(work.problem) && (
             <MetadataListItem item="Problem" value={work.problem ?? ''} />
           )}
         </ul>
