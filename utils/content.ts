@@ -147,7 +147,6 @@ export const getContentData = async (
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const matterResult = matter(fileContent);
     const { slug } = matterResult.data;
-
     return slug === id;
   });
 
