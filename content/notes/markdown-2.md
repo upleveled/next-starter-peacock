@@ -1,9 +1,9 @@
 ---
-title: 'Two Forms of Pre-rendering'
-date: '2021-02-01'
-slug: 'two-forms-of-pre-rendering'
-previewImage: '/images/notes/markdown_2.jpg'
-description: 'Next.js has two forms of pre-rendering: Static Generation and Server-side Rendering. The difference is in when it generates the HTML for a page.'
+title: "Two Forms of Pre-rendering"
+date: "2021-02-01"
+slug: "two-forms-of-pre-rendering"
+previewImage: "/images/notes/markdown_2.jpg"
+description: "Next.js has two forms of pre-rendering: Static Generation and Server-side Rendering. The difference is in when it generates the HTML for a page."
 category: bug-fixes
 tags:
   - javascript

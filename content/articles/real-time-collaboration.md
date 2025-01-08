@@ -1,8 +1,8 @@
 ---
 title: Building a Real-Time Collaboration Tool with WebSockets
-date: '2023-01-03'
-slug: 'building-real-time-collaboration'
-previewImage: '/images/articles/article-preview.png'
+date: "2023-01-03"
+slug: "building-real-time-collaboration"
+previewImage: "/images/articles/article-preview.png"
 description: "In a detailed walkthrough, Aarav Mehta shares the process of creating 'CodeCollab', a real-time collaboration tool built using WebSockets."
 tags:
   - css

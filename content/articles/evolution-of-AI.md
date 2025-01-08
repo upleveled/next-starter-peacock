@@ -1,10 +1,10 @@
 ---
 title: The Evolution of AI in Web Development
-date: '2023-01-03'
-slug: 'evolution-of-ai'
-previewImage: '/images/articles/article-preview.png'
+date: "2023-01-03"
+slug: "evolution-of-ai"
+previewImage: "/images/articles/article-preview.png"
 draft: true
-description: 'Aarav Mehta delves into the transformative role of Artificial Intelligence in the realm of web development. He examines how AI-driven technologies have begun to automate tasks such as code generation, user experience design, and even content creation.'
+description: "Aarav Mehta delves into the transformative role of Artificial Intelligence in the realm of web development. He examines how AI-driven technologies have begun to automate tasks such as code generation, user experience design, and even content creation."
 tags:
   - css
 ---
