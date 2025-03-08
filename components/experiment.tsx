@@ -31,7 +31,7 @@ export function ExperimentItem({ experiment }: { experiment: Experiment }) {
     <Tilt
       scale={1}
       transitionSpeed={200}
-      className="rounded bg-light w-full mb-3 p-3 cursor-pointer sm:mx-2 sm:mb-4 sm:basis-[40%] sm:flex-grow sm:flex-shrink lg:basis-[30%]"
+      className="rounded-sm bg-light w-full mb-3 p-3 cursor-pointer sm:mx-2 sm:mb-4 sm:basis-[40%] sm:grow sm:shrink lg:basis-[30%]"
     >
       <a
         className="no-underline"
