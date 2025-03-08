@@ -1,21 +1,59 @@
-@import url('./content.css');
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:is(.dark * ));
+
+@theme {
+  --font-body: var(--font-manrope);
+  --font-display: var(--font-young-serif);
+
+  --color-background: var(--background);
+  --color-accent-1: var(--accent-1);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-accent-5: var(--accent-5);
+  --color-accent-6: var(--accent-6);
+  --color-accent-7: var(--accent-7);
+  --color-accent-8: var(--accent-8);
+  --color-accent-delight: hsl(var(--accent-delight));
+  --color-accent-bob: hsl(var(--accent-bob));
+  --color-primary: hsl(var(--primary));
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility main {
+  min-height: calc(100vh - 150px);
+}
 
 @layer base {
   :root {
-    --background: theme('colors.neutral.50');
-    --accent-1: theme('colors.neutral.900');
-    --accent-2: theme('colors.neutral.800');
-    --accent-3: theme('colors.neutral.700');
-    --accent-4: theme('colors.neutral.600');
-    --accent-5: theme('colors.neutral.500');
-    --accent-6: theme('colors.neutral.400');
-    --accent-7: theme('colors.neutral.300');
-    --accent-8: theme('colors.neutral.200');
-    --accent-9: theme('colors.neutral.100');
+    --background: var(--color-neutral-50);
+    --accent-1: var(--color-neutral-900);
+    --accent-2: var(--color-neutral-800);
+    --accent-3: var(--color-neutral-700);
+    --accent-4: var(--color-neutral-600);
+    --accent-5: var(--color-neutral-500);
+    --accent-6: var(--color-neutral-400);
+    --accent-7: var(--color-neutral-300);
+    --accent-8: var(--color-neutral-200);
+    --accent-9: var(--color-neutral-100);
     --foreground: ;
 
     /* TODO: rename to more interesting ones */
@@ -26,16 +64,16 @@
   }
 
   [data-theme='dark'] {
-    --background: theme('colors.neutral.950');
-    --accent-1: theme('colors.neutral.100');
-    --accent-2: theme('colors.neutral.200');
-    --accent-3: theme('colors.neutral.300');
-    --accent-4: theme('colors.neutral.400');
-    --accent-5: theme('colors.neutral.500');
-    --accent-6: theme('colors.neutral.600');
-    --accent-7: theme('colors.neutral.700');
-    --accent-8: theme('colors.zinc.800');
-    --accent-9: theme('colors.neutral.900');
+    --background: var(--color-neutral-950);
+    --accent-1: var(--color-neutral-100);
+    --accent-2: var(--color-neutral-200);
+    --accent-3: var(--color-neutral-300);
+    --accent-4: var(--color-neutral-400);
+    --accent-5: var(--color-neutral-500);
+    --accent-6: var(--color-neutral-600);
+    --accent-7: var(--color-neutral-700);
+    --accent-8: var(--color-zinc-800);
+    --accent-9: var(--color-neutral-900);
     --foreground: ;
 
     --primary: 358 44% 51%;
@@ -57,8 +95,126 @@
   }
 }
 
-@layer components {
-  .main {
-    min-height: calc(100vh - 150px);
+@utility content-body {
+  @apply text-accent-2;
+  & p {
+    @apply mb-3;
+  }
+  & ul {
+    @apply list-disc;
+    @apply px-4;
+  }
+  & ol {
+    @apply list-decimal;
+    @apply px-4;
+  }
+  & pre code {
+    @apply overflow-hidden;
+  }
+  & li {
+    @apply mb-2;
+  }
+  & ul ul {
+    @apply mb-0 list-inside;
+    list-style-type: square;
+  }
+  & ol ol {
+    @apply mb-0 list-inside;
+    list-style-type: square;
+  }
+  & ol ul {
+    @apply mb-0 list-inside;
+    list-style-type: square;
+  }
+  & ul ol {
+    @apply mb-0 list-inside;
+    list-style-type: square;
+  }
+  & img {
+    @apply mb-4 block object-cover w-full max-w-full;
+  }
+  & li p {
+    @apply mb-0;
+  }
+  & time {
+    @apply text-center block mb-8;
+  }
+  & blockquote p {
+    @apply mb-0;
+  }
+  & table {
+    @apply border-collapse w-full overflow-x-scroll block border;
+  }
+  & a > img {
+    @apply no-underline;
+  }
+  & a:hover > img {
+    @apply no-underline;
+  }
+  & a {
+    @apply text-primary underline;
+  }
+  & a:hover {
+    @apply text-accent-3;
+  }
+  & a:visited:hover {
+    @apply text-accent-3;
+  }
+  & a:focus {
+    @apply outline-primary no-underline decoration-primary;
+  }
+  & td {
+    @apply p-2 border-accent-3 border;
+  }
+  & th {
+    @apply text-white;
+    @apply p-2 border-accent-3 border;
+  }
+  & blockquote {
+    @apply relative italic p-4 mb-6 before:content-[""] before:h-full before:w-1 before:inline-block before:absolute before:top-0 before:left-0 before:right-0 before:bg-primary;
+  }
+  & h1 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+    @apply text-3xl md:text-4xl xl:text-5xl font-extrabold mb-4 font-display;
+  }
+  & h2 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+    @apply text-2xl font-display;
+  }
+  & h3 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+  }
+  & h4 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+  }
+  & h5 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+  }
+  & h6 {
+    @apply mb-4 font-extrabold text-accent-2 font-display;
+  }
+  & figcaption {
+    @apply mt-2 text-center text-sm italic block;
+  }
+  & hr {
+    @apply mb-4 border-x-0 border-t-0 border border-b;
+  }
+  & main {
+    @apply mb-8;
+  }
+  & b {
+    @apply font-bold text-accent-2;
+  }
+  & strong {
+    @apply font-bold text-accent-2;
+  }
+  & .contains-task-list {
+    @apply list-none px-0;
+  }
+}
+
+@utility contains-task-list {
+  .content-body & {
+    @apply list-none px-0;
   }
 }

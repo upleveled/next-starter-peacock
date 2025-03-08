@@ -155,9 +155,9 @@ function TechStack({ techStack }: { techStack: string[] }) {
   if (!techStack.length) return null;
   return (
     <li className="list-none flex gap-4 border-b border-accent-8 py-3 text-sm">
-      <span className="text-accent-4 w-1/3 flex-shrink-0">Tech Stack</span>
+      <span className="text-accent-4 w-1/3 shrink-0">Tech Stack</span>
 
-      <ul className="flex flex-wrap gap-2 flex-grow-0">
+      <ul className="flex flex-wrap gap-2 grow-0">
         {techStack.map((tech) => (
           <li
             key={`techStack-${tech}`}
