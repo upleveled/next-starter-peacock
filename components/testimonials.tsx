@@ -60,13 +60,13 @@ function Navigation() {
   return (
     <div className="navigation flex gap-2 justify-end mt-4">
       <button
-        className="border rounded-sm border-accent-6 p-2 text-accent-5 hover:text-accent-1 hover:border-accent-1 transition-transform active:scale-95"
+        className="border rounded-xs border-accent-6 p-2 text-accent-5 hover:text-accent-1 hover:border-accent-1 transition-transform active:scale-95"
         onClick={() => swiper.slidePrev()}
       >
         <ChevronLeft />
       </button>
       <button
-        className="border rounded-sm border-accent-6 p-2 text-accent-5 hover:text-accent-1 hover:border-accent-1 transition-transform active:scale-95"
+        className="border rounded-xs border-accent-6 p-2 text-accent-5 hover:text-accent-1 hover:border-accent-1 transition-transform active:scale-95"
         onClick={() => swiper.slideNext()}
       >
         <ChevronRight />
