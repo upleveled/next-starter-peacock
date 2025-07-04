@@ -23,7 +23,10 @@ export function MobileNav() {
       {menuOpen && (
         <motion.section
           variants={variants}
-          transition={{ type: 'linear' }}
+          transition={{
+            type: 'tween',
+            ease: 'linear',
+          }}
           initial="hidden"
           animate="enter"
           // initial={{ y: 100 }}
