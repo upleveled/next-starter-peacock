@@ -97,7 +97,6 @@
 
 @utility content-body {
   @apply text-accent-2;
-  /* stylelint-disable nesting-selector-no-missing-scoping-root -- TODO: Modify stylelint-config-upleveled to configure ignoreAtRules in rule once it exists https://github.com/stylelint/stylelint/issues/8728 https://github.com/stylelint/stylelint/issues/8406#issuecomment-3185835523 */
   & p {
     @apply mb-3;
   }
@@ -212,13 +211,10 @@
   & .contains-task-list {
     @apply list-none px-0;
   }
-  /* stylelint-enable nesting-selector-no-missing-scoping-root -- TODO: Modify stylelint-config-upleveled to configure ignoreAtRules in rule once it exists https://github.com/stylelint/stylelint/issues/8728 https://github.com/stylelint/stylelint/issues/8406#issuecomment-3185835523 */
 }
 
 @utility contains-task-list {
-  /* stylelint-disable nesting-selector-no-missing-scoping-root -- TODO: Modify stylelint-config-upleveled to configure ignoreAtRules in rule once it exists https://github.com/stylelint/stylelint/issues/8728 https://github.com/stylelint/stylelint/issues/8406#issuecomment-3185835523 */
   .content-body & {
     @apply list-none px-0;
   }
-  /* stylelint-enable nesting-selector-no-missing-scoping-root -- TODO: Modify stylelint-config-upleveled to configure ignoreAtRules in rule once it exists https://github.com/stylelint/stylelint/issues/8728 https://github.com/stylelint/stylelint/issues/8406#issuecomment-3185835523 */
 }
