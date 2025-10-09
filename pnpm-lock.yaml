@@ -57,8 +57,8 @@ importers:
         specifier: 0.34.4
         version: 0.34.4
       swiper:
-        specifier: 11.2.10
-        version: 11.2.10
+        specifier: 12.0.2
+        version: 12.0.2
       unified:
         specifier: 11.0.5
         version: 11.0.5
@@ -2887,8 +2887,8 @@ packages:
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
-  swiper@11.2.10:
-    resolution: {integrity: sha512-RMeVUUjTQH+6N3ckimK93oxz6Sn5la4aDlgPzB+rBrG/smPdCTicXyhxa+woIpopz+jewEloiEE3lKo1h9w2YQ==}
+  swiper@12.0.2:
+    resolution: {integrity: sha512-y8F6fDGXmTVVgwqJj6I00l4FdGuhpFJn0U/9Ucn1MwWOw3NdLV8aH88pZOjyhBgU/6PyBlUx+JuAQ5KMWz906Q==}
     engines: {node: '>= 4.7.0'}
 
   table@6.9.0:
@@ -6435,7 +6435,7 @@ snapshots:
 
   svg-tags@1.0.0: {}
 
-  swiper@11.2.10: {}
+  swiper@12.0.2: {}
 
   table@6.9.0:
     dependencies:
