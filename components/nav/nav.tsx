@@ -1,5 +1,6 @@
 'use client';
 
+import type { Route } from 'next';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { type ReactNode, useEffect, useState } from 'react';
@@ -10,7 +11,7 @@ import { Container } from '../container';
 import { Hamburger } from '../hamburger';
 
 export function Nav() {
-  const rssLink = `${SiteConfig.site.siteUrl}/rss.xml`;
+  const rssLink = `${SiteConfig.site.siteUrl}/rss.xml` as Route;
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -76,13 +77,13 @@ export function Nav() {
   );
 }
 
-function NavItem({
+function NavItem<Href extends string>({
   title,
   href,
   external = false,
 }: {
   title: string | ReactNode;
-  href: string;
+  href: Route<Href>;
   external?: boolean;
 }) {
   const classes =

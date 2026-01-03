@@ -101,7 +101,7 @@ export default async function ContentPage({ params }: Params) {
       </header>
 
       <Content html={content.contentHtml} />
-      {content.tags && <Chips items={content.tags} />}
+      {content.tags && <Chips contentType={contentType} items={content.tags} />}
     </Container>
   );
 }
