@@ -17,6 +17,8 @@ minimumReleaseAgeExclude:
   - next@16.1.5
   # Renovate security update: swiper@12.1.2
   - swiper@12.1.2
+  # Renovate security update: postcss@8.5.10
+  - postcss@8.5.10
 # Fail on pnpm ignored build scripts
 # - https://pnpm.io/settings#strictdepbuilds
 strictDepBuilds: true
