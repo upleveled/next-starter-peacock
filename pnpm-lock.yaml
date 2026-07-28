@@ -95,8 +95,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0(@babel/core@7.24.5)(@types/node@26.0.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(@typescript-eslint/utils@8.56.1(eslint@10.5.0(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.56.1(eslint@10.5.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.5.0(jiti@2.7.0)))(eslint@10.5.0(jiti@2.7.0))(globals@17.3.0)(typescript@5.9.3)
       postcss:
-        specifier: 8.5.15
-        version: 8.5.15
+        specifier: 8.5.18
+        version: 8.5.18
       prettier:
         specifier: 3.8.4
         version: 3.8.4
@@ -105,7 +105,7 @@ importers:
         version: 17.14.0(typescript@5.9.3)
       stylelint-config-upleveled:
         specifier: 2.0.5
-        version: 2.0.5(postcss@8.5.15)(stylelint-scss@7.0.0(stylelint@17.14.0(typescript@5.9.3)))(stylelint@17.14.0(typescript@5.9.3))
+        version: 2.0.5(postcss@8.5.18)(stylelint-scss@7.0.0(stylelint@17.14.0(typescript@5.9.3)))(stylelint@17.14.0(typescript@5.9.3))
       tailwind-merge:
         specifier: 3.6.0
         version: 3.6.0
@@ -2653,6 +2653,10 @@ packages:
 
   postcss@8.5.15:
     resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.18:
+    resolution: {integrity: sha512-xdB1oSLHbz1vRWgCDalrCqEFTWzFlhqFC5tIHLMOSUIjhm3XXQ1qrFy8S/ESr1JYRRXqM3c1QFiMZUJdUTqyMQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -5957,22 +5961,22 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.15):
+  postcss-safe-parser@7.0.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.15
+      postcss: 8.5.18
 
-  postcss-scss@4.0.9(postcss@8.5.15):
+  postcss-scss@4.0.9(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.15
+      postcss: 8.5.18
 
   postcss-selector-parser@7.1.4:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-styled-syntax@0.7.1(postcss@8.5.15):
+  postcss-styled-syntax@0.7.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.15
+      postcss: 8.5.18
       typescript: 5.9.3
 
   postcss-value-parser@4.2.0: {}
@@ -5984,6 +5988,12 @@ snapshots:
       source-map-js: 1.2.1
 
   postcss@8.5.15:
+    dependencies:
+      nanoid: 3.3.15
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.18:
     dependencies:
       nanoid: 3.3.15
       picocolors: 1.1.1
@@ -6401,26 +6411,26 @@ snapshots:
     optionalDependencies:
       stylelint-scss: 6.12.1(stylelint@17.14.0(typescript@5.9.3))
 
-  stylelint-config-recommended-scss@17.0.0(postcss@8.5.15)(stylelint@17.14.0(typescript@5.9.3)):
+  stylelint-config-recommended-scss@17.0.0(postcss@8.5.18)(stylelint@17.14.0(typescript@5.9.3)):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.15)
+      postcss-scss: 4.0.9(postcss@8.5.18)
       stylelint: 17.14.0(typescript@5.9.3)
       stylelint-config-recommended: 18.0.0(stylelint@17.14.0(typescript@5.9.3))
       stylelint-scss: 7.0.0(stylelint@17.14.0(typescript@5.9.3))
     optionalDependencies:
-      postcss: 8.5.15
+      postcss: 8.5.18
 
   stylelint-config-recommended@18.0.0(stylelint@17.14.0(typescript@5.9.3)):
     dependencies:
       stylelint: 17.14.0(typescript@5.9.3)
 
-  stylelint-config-upleveled@2.0.5(postcss@8.5.15)(stylelint-scss@7.0.0(stylelint@17.14.0(typescript@5.9.3)))(stylelint@17.14.0(typescript@5.9.3)):
+  stylelint-config-upleveled@2.0.5(postcss@8.5.18)(stylelint-scss@7.0.0(stylelint@17.14.0(typescript@5.9.3)))(stylelint@17.14.0(typescript@5.9.3)):
     dependencies:
-      postcss-styled-syntax: 0.7.1(postcss@8.5.15)
+      postcss-styled-syntax: 0.7.1(postcss@8.5.18)
       stylelint: 17.14.0(typescript@5.9.3)
       stylelint-config-css-modules: 4.5.1(stylelint@17.14.0(typescript@5.9.3))
       stylelint-config-recommended: 18.0.0(stylelint@17.14.0(typescript@5.9.3))
-      stylelint-config-recommended-scss: 17.0.0(postcss@8.5.15)(stylelint@17.14.0(typescript@5.9.3))
+      stylelint-config-recommended-scss: 17.0.0(postcss@8.5.18)(stylelint@17.14.0(typescript@5.9.3))
       stylelint-scss: 7.0.0(stylelint@17.14.0(typescript@5.9.3))
     transitivePeerDependencies:
       - postcss
@@ -6478,8 +6488,8 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.15
-      postcss-safe-parser: 7.0.1(postcss@8.5.15)
+      postcss: 8.5.18
+      postcss-safe-parser: 7.0.1(postcss@8.5.18)
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
       string-width: 8.2.1
